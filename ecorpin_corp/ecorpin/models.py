@@ -28,6 +28,7 @@ class endpoint_info(models.Model):
     def __str__(self):
         return self.end_point
 
+#----------------------------ECORPIAN
 class ecorpian(models.Model):
     name = models.CharField(max_length=50)
     designation = models.CharField(max_length=50)
@@ -38,3 +39,15 @@ class ecorpian(models.Model):
     
     def __str__(self):
         return self.name
+
+#----------------------------FEEDBACK
+class feedback(models.Model):
+    visitor_name = models.CharField(max_length=50)
+    visitor_organization = models.CharField(max_length=100)
+    visitor_email = models.EmailField()
+    feedback_msg = models.TextField()
+
+    def __str__(self):
+        return self.visitor_email
+
+#----------------------------NEWPROJECT

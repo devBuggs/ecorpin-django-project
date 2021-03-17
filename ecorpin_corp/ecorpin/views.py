@@ -1,13 +1,12 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 
 from django.utils import timezone
 
-from .models import spotlight
-from .models import endpoint_info
-from .models import ecorpian
+from .models import spotlight, endpoint_info, ecorpian, feedback
 
+from .forms import feedback_form
 
 # Create your views here.
 def fevicon_ecorpin(request):
@@ -66,9 +65,22 @@ def covid(request):
     context = {'info':info}
     return render(request, 'covid.html', context)
 
+def feedback_create(request):
+    info = endpoint_info.objects.get(end_point='Feedback')
+    if request.method == 'POST':
+        form = feedback_form(request.POST)
+        if form.is_valid():
+            form.save()
+            print("*******************************************************")
+            return HttpResponseRedirect('/')
+        else:
+            print("-------------------------------------------------------")
+    else:
+        form = feedback_form()
+    context = { 'form': form, 'info': info}
+    return render(request, 'feedback.html', context)
 
 
 
 def test(request):
     return render(request, 'test.html', context=None)
-
