@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% load static %}
+  <title>Ecorpin Corporation</title>
+  <link rel="stylesheet" href="{% static 'css/w3.css' %}">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+  <style>
+    body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5 {
+      font-family: "Raleway", sans-serif
+    }
+
+    .w3-third img {
+      margin-bottom: -6px;
+      opacity: 0.8;
+      cursor: pointer
+    }
+
+    .w3-third img:hover {
+      opacity: 1
+    }
+
+    .ec-bg-Color {
+      background-color: #005050;
+    }
+  </style>
+</head>
+
+<body class="w3-light-grey w3-content" style="max-width:1600px">
+
+  <!-- Sidebar/menu -->
+  <nav
+    class="w3-sidebar w3-bar-block w3-white w3-animate-left w3-text-grey w3-collapse w3-top w3-center w3-display-container"
+    style="z-index:3;width:300px;font-weight:bold" id="mySidebar">
+    <a href="{% url 'index' %}" style="text-decoration: none;">
+      <h3 class="w3-padding-32 w3-center w3-pale-green w3-text-teal"><b>Ecorpin Corporation</b></h3>
+    </a>
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-hide-large">CLOSE</a>
+    <a href="#" onclick="w3_close()" class="w3-bar-item w3-button">SERVICES</a>
+    <a href="{% url 'privacy' %}" onclick="w3_close()" class="w3-bar-item w3-button">Privacy Policy</a>
+    <a href="{% url 'careers' %}" onclick="w3_close()" class="w3-bar-item w3-button">Careers</a>
+    <a href="{% url 'team' %}" onclick="w3_close()" class="w3-bar-item w3-button">Team</a>
+    <a href="{% url 'about' %}" onclick="w3_close()" class="w3-bar-item w3-button">About Ecorpin</a>
+    <a href="{% url 'contact' %}" onclick="w3_close()" class="w3-bar-item w3-button">Contact Us</a>
+    <a href="{% url 'tou' %}" onclick="w3_close()" class="w3-bar-item w3-button">Terms Of Use</a>
+    <div class="w3-display-bottomleft w3-left-align w3-margin w3-white">
+      <p class="w3-medium w3-bold">Ecorpin Corporation</p>
+      <p class="w3-small">INDIA, Pacific Asia</p>
+    </div>
+  </nav>
+
+  <!-- Top menu on small screens -->
+  <header class="w3-container w3-top w3-hide-large w3-white w3-xlarge w3-padding-16">
+    <span class="w3-left w3-padding">Ecorpin Corporation</span>
+    <a href="javascript:void(0)" class="w3-right w3-button w3-white" onclick="w3_open()">☰</a>
+  </header>
+
+  <!-- Overlay effect when opening sidebar on small screens -->
+  <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer"
+    title="close side menu" id="myOverlay"></div>
+
+  <!-- !PAGE CONTENT! -->
+  <div class="w3-main" style="margin-left:300px">
+
+    <!-- Push down content on small screens -->
+    <div class="w3-hide-large" style="margin-top:83px"></div>
+
+    <div class="w3-container w3-black w3-padding-16 ">
+      <h5><b>Ecorpins' Covid Response</b>: <a class="w3-hover-text-red" href="{% url 'covid' %}" title="Covid-19">Click here for information on adapting to Covid-19 and keeping connected.</a></h5>
+    </div>
+    <!-- Photo grid -->
+    <div class="w3-row">
+      <img class="w3-image" src="{% static 'spotlight/laser.jpg' %}" style="width:100%" onclick="onClick(this)"
+        alt="Laser Technology">
+    </div>
+
+    <!--Spotlight section -->
+    {% if latest_spotlight %}
+    <div class="w3-container ec-bg-Color w3-center w3-text-light-grey w3-padding-32" id="spotlight">
+      <h5>Spotlight : Ecorpin Lab.</h5>
+      <div class="w3-content w3-justify" style="max-width:800px">
+        <h2>“{{ latest_spotlight.spotlight_info }}”</h2>
+        <br>
+        <p>“{{ latest_spotlight.spotlight_text }}”</p>
+        <br>
+
+        <hr class="w3-opacity">
+        {{ spotlightData.spotlight_date }}
+        <hr class="w3-opacity">
+        <div>
+          <h4 class="">We inspire our extraordinary team, and they inspire us right back.
+          </h4>
+          <p class="w3-text-blue-gray">Have an idea!.. start a <a class="w3-text-sand" title="Hire Us"
+              href="#">project</a>
+            with <a class="w3-text-sand" title="Ecorpin Developers" href="{% url 'team' %}">#ecorpians</a>
+          <button class="w3-button w3-boarder w3-pale-green w3-text-teal">START A PROJECT</button>
+          </p>
+        </div>
+      </div>
+
+    </div>
+    {% else %}
+    <h3 class="w3-red w3-xxlarge w3-text-white w3-center">No spotlight is available...</h3>
+    {% endif %}
+
+    <!-- Footer -->
+    <footer class="w3-container w3-padding-32 w3-blue-grey w3-hide-small">
+      <div class="w3-row-padding">
+        <div class="w3-half w3-text-white w3-center">
+          <h3 class="w3-wide">Ecorpin Corporation</h3>
+          <p class="w3-padding">“Transform forward thinking into forward doing.”<br>“We explore, ideate and collaborate
+            with clients to execute and integrate digital solutions using the latest in virtual and augmented reality
+            technologies.”</p>
+        </div>
+
+        <div class="w3-half w3-text-black">
+          <h3><strong>#ecorpians :</strong> Ecorpin Developers</h3>
+          <p>We've passion for serious impact. We make new ways of seeing, and we see new ways of making. We inspire our
+            extraordinary team, and they inspire us right back. </p>
+          <p class="w3-medium w3-text-white">Engineered by <a href="#" target="_blank"
+              class="w3-hover-text-red w3-wide">Bhagwan Singh</a></p>
+        </div>
+      </div>
+    </footer>
+
+    <div class="w3-black w3-center w3-padding-24">Engineered by <a href="#" title="Bhagwan Singh" target="_blank"
+        class="w3-hover-opacity">Bhagwan Singh</a></div>
+  </div>
+
+  <script>
+    // Script to open and close sidebar
+    function w3_open() {
+      document.getElementById("mySidebar").style.display = "block";
+      document.getElementById("myOverlay").style.display = "block";
+    }
+
+    function w3_close() {
+      document.getElementById("mySidebar").style.display = "none";
+      document.getElementById("myOverlay").style.display = "none";
+    }
+
+    // Modal Image Gallery
+    function onClick(element) {
+      document.getElementById("img01").src = element.src;
+      document.getElementById("modal01").style.display = "block";
+      var captionText = document.getElementById("caption");
+      captionText.innerHTML = element.alt;
+    }
+
+  </script>
+
+</body>
+
+</html>

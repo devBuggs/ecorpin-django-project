@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+<!-- Endpoint Information -->
+{% if info %}
+{% block titile %} {{ info.title }} {% endblock %}
+
+{% block end-point %} {{ info.end_point }} {% endblock %}
+
+{% block side-nav %} {{ info.sideNav }} {% endblock %}
+
+{% block main-headBox %}
+<h3>About</h3>
+<h1><b>Ecorpin Corporation</b></h1>
+<p>{{ info.main_headBox }}</p>
+{% endblock %}
+
+{% block edge-headBox %}<h3><b>{{ info.edge_headBox }}</b></h3>{% endblock %}
+
+{% endif %}
+
+<!-- Content Block -->
+{% block content %}
+<div class="aboutUsBox">
+    <div class="box1 ">
+        <h2><strong>“Hi, We are ecorpians! The electrifying young minds”</strong></h2><br>
+        <p>“Based in various Remote Locations in India and on internet, here at Ecorpin
+            Corp. we explore, ideate and collaborate with clients to execute and integrate
+            digital solutions using the latest in technologies.”</p>
+        <p>“Our peoples are what make us different. Ecorpin's creative, technologically
+            savvy, curious and restlessly strategic people looking to reimagine and
+            transform what is possible.”</p>
+    </div>
+    <hr>
+    <div class="box2" style="text-align: center;">
+        <div>“At <strong>Ecorpin Corporation</strong>, we pursue <i><b>research, education, and innovation</b></i>
+            with a passion for serious impact.”</div>
+        <div>“Ecorpians' is comprised of passionately creative, technologically savvy, curious
+            and restlessly strategic people looking for reimagine and transform what is
+            possible.”</div>
+            <br>
+        <div class="labelTitle">
+            <h2><br>Our Philosophy<br></h2>
+            <br>
+            <div>“Transform forward thinking into forward doing.”
+            <br>“We strive to awaken the potential of today to build towards a better futeure.” </div>
+        </div>
+    </div>
+</div>
+{% endblock%}

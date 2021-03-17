@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+<!-- Endpoint Information -->
+{% if info %}
+{% block titile %} {{ info.title }} {% endblock %}
+
+{% block end-point %} {{ info.end_point }} {% endblock %}
+
+{% block side-nav %} {{ info.sideNav }} {% endblock %}
+
+{% block main-headBox %}<h2 class="hidden"><b></b></h2>{% endblock %}
+
+{% block edge-headBox %}<h4><b>{{ info.edge_headBox }}</b></h4>{% endblock %}
+
+{% endif %}
+
+{% block content %}
+<p>Oops.. it's time for us to build &amp; maintain something extraordinary!</p>
+<hr>
+<h3><br><b>Server Maintenance</b></h3>
+<h2>Ecorpin Lab. </h2>
+<hr>
+{% endblock%}
