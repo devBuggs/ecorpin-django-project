@@ -73,7 +73,7 @@ def feedback_create(request):
         if form.is_valid():
             form.save()
             print("*******************************************************")
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/team')
         else:
             print("-------------------------------------------------------")
     else:

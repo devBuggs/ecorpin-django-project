@@ -17,12 +17,12 @@
 {% block content %}
 <form action="{% url 'feedback' %}" method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
-    <search_button id="submit" type="submit" onclick="submit_client_data()">Submit Response</search_button>
+    {{ form }}
+    <button class="search_button" id="submit_feedback_data" type="submit">Submit Response</button>
 </form>
 
-<script type="application/javascript">
-    function submit_client_data() {
+<script>
+    document.getElementById("submit_feedback_data").addEventListener("click", function(){
         // on submission successful message 
         let timerInterval
         Swal.fire({
@@ -46,6 +46,7 @@
                 clearInterval(timerInterval)
             }
         });
-    }
+    });
 </script>
+
 {% endblock%}
