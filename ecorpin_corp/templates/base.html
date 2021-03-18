@@ -12,6 +12,7 @@
   <meta name="theme-color" content="#ffffff">
   <link rel="stylesheet" href="{% static 'css/baseCSS.css' %}" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
   <style>
     .theme--custom {
@@ -45,6 +46,20 @@
       color: #004040;
       font-family: monospace;
       font-size: 100%;
+    }
+
+    search_button {
+      padding: 8px 50px;
+      border: none;
+      background-color: #004040;
+      color: #FFF;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    search_button:hover {
+      background-color: black;
+      color: #004040;
     }
   </style>
   {% endblock %}

@@ -8,18 +8,44 @@
 
 {% block side-nav %} {{ info.sideNav }} {% endblock %}
 
-{% block main-headBox %}<h2><b>{{ info.main_headBox }}</b></h2>{% endblock %}
+{% block main-headBox %}<h2><b>{{ info.main_headBox }}</b></h2><br><p>We'd love to know what you think about our services so that we can make sure the experience is the best it can be.</p>{% endblock %}
 
 {% block edge-headBox %}<h4><b>{{ info.edge_headBox }}</b></h4>{% endblock %}
 
 {% endif %}
 
 {% block content %}
-
 <form action="{% url 'feedback' %}" method="POST">
     {% csrf_token %}
     {{ form.as_p }}
-    <button type="submit">Send Feedback</button>
+    <search_button id="submit" type="submit" onclick="submit_client_data()">Submit Response</search_button>
 </form>
 
+<script type="application/javascript">
+    function submit_client_data() {
+        // on submission successful message 
+        let timerInterval
+        Swal.fire({
+            title: "thank's for your valuable feedback",
+            html: 'It will close in <b></b> milliseconds.',
+            timer: 2000,
+            timerProgressBar: true,
+            onBeforeOpen: () => {
+                Swal.showLoading()
+                timerInterval = setInterval(() => {
+                    const content = Swal.getContent()
+                    if (content) {
+                        const b = content.querySelector('b')
+                        if (b) {
+                            b.textContent = Swal.getTimerLeft()
+                        }
+                    }
+                }, 100)
+            },
+            onClose: () => {
+                clearInterval(timerInterval)
+            }
+        });
+    }
+</script>
 {% endblock%}

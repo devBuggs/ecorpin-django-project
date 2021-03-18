@@ -66,6 +66,7 @@ def covid(request):
     return render(request, 'covid.html', context)
 
 def feedback_create(request):
+    serverMsg = ''
     info = endpoint_info.objects.get(end_point='Feedback')
     if request.method == 'POST':
         form = feedback_form(request.POST)
