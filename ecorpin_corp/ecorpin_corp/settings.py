@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ecorpin.apps.EcorpinConfig',
+    'service_access.apps.ServiceAccessConfig',
 ]
 
 MIDDLEWARE = [

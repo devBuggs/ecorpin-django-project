@@ -7,6 +7,7 @@ urlpatterns = [
     path('', views.index_ecorpin, name='index'),
     path('test', views.test, name='test'),
 
+    # Retrive Data Links
     path('feedback', views.feedback_create, name='feedback'),
     
     path('about', views.about, name='about'),
