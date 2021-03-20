@@ -18,7 +18,7 @@ def contact_request(request):
         if form.is_valid():
             form.save()
             print("*******************************************************")
-            serverMsg = 'Data recived.. #ecorpin'
+            serverMsg = "Contact Request is received. We'll contact you shortly. "
             return render(request, 'service_access/contact_request.html', { 'data':serverMsg })
         else:
             print("-------------------------------------------------------")

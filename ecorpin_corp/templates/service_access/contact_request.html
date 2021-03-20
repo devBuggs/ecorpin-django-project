@@ -89,7 +89,7 @@
             font-size: 17px;
             line-height: 20px;
             text-decoration: none;
-            background-color: rgb(45, 59, 65);
+            background-color: #4b4a55a8;
             /* remove underline from anchors */
         }
 
@@ -209,7 +209,7 @@
         {% if data %}
         <div class="w3-sand">
             <header class="w3-center w3-margin-bottom w3-panel w3-padding-48">
-                <h3 class="w3-wide w3-text-red">{{ data }}</h3>
+                <p class="w3-wide w3-text-red">{{ data }}</p>
                 <hr>
                 <h3 class="w3-text-teal">We value privacy and confidentiality.</h3>
                 <h1 class="w3-wide w3-opacity"><b>Welcome to Ecorpin Corporation</b></h1>
@@ -223,7 +223,7 @@
                 <p>On screens smaller than 601 pixels it resizes 100%.</p>
             </div>
             <div class="w3-container w3-half">
-                <form action="{% url 'contact_request' %}" method="POST">
+                <form action="{% url 'contact_request' %}" method="POST" autocomplete="off">
                     {% csrf_token %}
                     {{ form.as_p }}
                     <button class="button button3" type="submit">Let's Start Together</button>
@@ -232,6 +232,16 @@
         </div>
         {% endif %}
     </div>
+
+    <script>
+        var ContactDateTime = document.getElementById("id_contact_date");
+        var ContactProjectIdea = document.getElementById("id_project_idea");
+        var ContactMobileNumber = document.getElementById("id_contact_mobile");
+
+        ContactDateTime.setAttribute("type", "datetime-local");
+        ContactProjectIdea.classList.add("w3-input", "w3-pale-green");
+        ContactMobileNumber.setAttribute("type", "tel")
+    </script>
 
 </body>
 
