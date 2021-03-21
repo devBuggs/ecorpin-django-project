@@ -6,7 +6,7 @@ from .models import ContactRequest
 class ContactRequestForm(forms.ModelForm):
     class Meta:
         model = ContactRequest
-        fields = ('contact_name', 'project_title', 'project_idea', 'contact_date', 'contact_email', 'contact_mobile', 'contact_type')
+        fields = ('contact_name', 'project_title', 'project_idea', 'contact_date', 'contact_mobile', 'contact_email', 'contact_type')
         labels = {
             'project_title': 'Project Title',
             'project_idea': 'Project Idea',
