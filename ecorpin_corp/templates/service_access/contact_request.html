@@ -93,6 +93,10 @@
             /* remove underline from anchors */
         }
 
+        textarea{
+            background-color: #4b4a55a8;
+        }
+
         input:hover,
         .btn:hover {
             opacity: 1;
@@ -239,8 +243,10 @@
         var ContactMobileNumber = document.getElementById("id_contact_mobile");
 
         ContactDateTime.setAttribute("type", "datetime-local");
-        ContactProjectIdea.classList.add("w3-input", "w3-pale-green");
-        ContactMobileNumber.setAttribute("type", "tel")
+        ContactProjectIdea.classList.add("w3-input");
+        ContactMobileNumber.setAttribute("type", "tel");
+        ContactMobileNumber.setAttribute("pattern", "[0-9]{10}");
+        ContactMobileNumber.setAttribute("placeholder", "e.g. 999999XXXX");
     </script>
 
 </body>
