@@ -28,6 +28,20 @@
       opacity: 1
     }
 
+    .search_button {
+      padding: 8px 50px;
+      border: none;
+      background-color: #004040;
+      color: #FFF;
+      cursor: pointer;
+      display: inline-block;
+    }
+
+    .search_button:hover {
+      background-color: black;
+      color: #004040;
+    }
+
     .ec-bg-Color {
       background-color: #005050;
     }
@@ -74,7 +88,8 @@
     <div class="w3-hide-large" style="margin-top:83px"></div>
 
     <div class="w3-container w3-black w3-padding-16 ">
-      <h5><b>Ecorpins' Covid Response</b>: <a class="w3-hover-text-red" href="{% url 'covid' %}" title="Covid-19">Click here for information on adapting to Covid-19 and keeping connected.</a></h5>
+      <h5><b>Ecorpins' Covid Response</b>: <a class="w3-hover-text-red" href="{% url 'covid' %}" title="Covid-19">Click
+          here for information on adapting to Covid-19 and keeping connected.</a></h5>
     </div>
     <!-- Photo grid -->
     <div class="w3-row">
@@ -99,9 +114,10 @@
           <h4 class="">We inspire our extraordinary team, and they inspire us right back.
           </h4>
           <p class="w3-text-blue-gray">Have an idea!.. start a <a class="w3-text-sand" title="Hire Us"
-              href="#">project</a>
+              href="{% url 'contact_request' %}">project</a>
             with <a class="w3-text-sand" title="Ecorpin Developers" href="{% url 'team' %}">#ecorpians</a>
-          <button class="w3-button w3-boarder w3-pale-green w3-text-teal">START A PROJECT</button>
+            <a href="{% url 'contact_request' %}" class="search_button w3-boarder" style="text-decoration: none;">START
+              A PROJECT</a>
           </p>
         </div>
       </div>
@@ -125,8 +141,6 @@
           <h3><strong>#ecorpians :</strong> Ecorpin Developers</h3>
           <p>We've passion for serious impact. We make new ways of seeing, and we see new ways of making. We inspire our
             extraordinary team, and they inspire us right back. </p>
-          <p class="w3-medium w3-text-white">Engineered by <a href="#" target="_blank"
-              class="w3-hover-text-red w3-wide">Bhagwan Singh</a></p>
         </div>
       </div>
     </footer>

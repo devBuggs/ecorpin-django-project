@@ -9,7 +9,7 @@ from .forms import ContactRequestForm
 
 # Create your views here.
 def main(request):
-    return HttpResponseRedirect('/team')
+    return HttpResponseRedirect('/')
 
 def contact_request(request):
     serverMsg = ''
