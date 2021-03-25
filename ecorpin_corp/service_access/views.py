@@ -9,18 +9,7 @@ from .forms import ContactRequestForm, ServiceAccessLoginForm
 
 # Create your views here.
 def main(request):
-    form = ServiceAccessLoginForm()
-    if request.method=="POST":
-        if form.is_valid:
-            #authenticate
-            if next:
-                return redirect(next)
-            return redirect('/')
-    else:
-        form = ServiceAccessLoginForm()
-    context = {
-        'form' : form,
-    }
+    #service access backend
     return HttpResponseRedirect('/')
 
 def contact_request(request):
