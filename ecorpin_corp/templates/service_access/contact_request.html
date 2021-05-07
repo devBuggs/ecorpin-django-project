@@ -16,7 +16,7 @@
             font-family: "Montserrat", sans-serif
         }
 
-        label{
+        label {
             display: none;
         }
 
@@ -95,7 +95,7 @@
             /* remove underline from anchors */
         }
 
-        textarea{
+        textarea {
             padding: 12px;
             border: none;
             border-radius: 4px;
@@ -111,19 +111,20 @@
 
         input::placeholder {
             color: black;
-            opacity: 1; 
+            opacity: 1;
         }
 
-        input:-ms-input-placeholder{
+        input:-ms-input-placeholder {
             color: black;
         }
-        textarea:-ms-input-placeholder{
+
+        textarea:-ms-input-placeholder {
             color: black;
         }
 
         textarea::placeholder {
             color: black;
-            opacity: 1; 
+            opacity: 1;
         }
 
         input:hover,
@@ -250,8 +251,11 @@
         </div>
         {% else %}
         <div class="w3-row w3-border">
-            <div class="w3-container w3-half w3-red w3-hide-small">
-                <div class="w3-twothird w3-padding-48 w3-center w3-teal"><h2 class="w3-text-black"><b>EXPLORE OUR PROJECTS</b></h2></div>
+            <div class="w3-container w3-half w3-hide-small">
+                <div class="w3-row w3-padding-48 w3-center w3-teal">
+                    <h2 class="w3-text-black w3-jumbo"><b>EXPLORE OUR PROJECTS</b></h2>
+                </div>
+
             </div>
             <div class="w3-container w3-half">
                 <form action="{% url 'contact_request' %}" method="POST" autocomplete="off">
@@ -293,7 +297,6 @@
         ContactType.classList.add("w3-select", "w3-light-gray");
 
     </script>
-
 </body>
 
 </html>
