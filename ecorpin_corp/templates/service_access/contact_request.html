@@ -88,7 +88,7 @@
             margin: 5px 0;
             opacity: 0.85;
             display: inline-block;
-            font-size: 17px;
+            font-size: 14px;
             line-height: 20px;
             text-decoration: none;
             background-color: #4b4a55a8;
@@ -251,13 +251,48 @@
         </div>
         {% else %}
         <div class="w3-row w3-border">
-            <div class="w3-container w3-half w3-hide-small">
-                <div class="w3-row w3-padding-48 w3-center w3-teal">
-                    <h2 class="w3-text-black w3-jumbo"><b>EXPLORE OUR PROJECTS</b></h2>
+            <div class="w3-container w3-twothird w3-hide-small">
+                <div class="w3-row w3-padding-48 w3-center ">
+                    <h2 class="w3-text-deep-purple w3-xlarge">Every business is different and has its own set of requirements.
+                        <br> Keep your growing business ahead. 
+                        <br> We are comitted to empowering you by providing the latest technology solutions & services from us.</h2>
                 </div>
-
+                <div class="w3-row w3-border w3-center">
+                    <div class="w3-container w3-third w3-hover-deep-purple">
+                        <h3>Web App Development</h3>
+                        <p>The w3-half class uses 50% of the parent container.</p>
+                        <p>On screens smaller than 601 pixels it resizes 100%.</p>
+                        <a href="#" class="w3-btn w3-red w3-s">Know More </a>
+                    </div>
+                    <div class="w3-container w3-third w3-light-gray w3-hover-deep-purple">
+                        <h3>Mobile App Development</h3>
+                        <p>The w3-half class uses 50% of the parent container.</p>
+                        <p>On screens smaller than 601 pixels it resizes 100%.</p>
+                        <a href="#" class="w3-btn w3-red w3-s">Know More </a>
+                    </div>
+                    <div class="w3-container w3-third w3-hover-deep-purple">
+                        <h3>Software Development</h3>
+                        <p>The w3-half class uses 50% of the parent container.</p>
+                        <p>On screens smaller than 601 pixels it resizes 100%.</p>
+                        <a href="#" class="w3-btn w3-red w3-s">Know More </a>
+                    </div>
+                </div>
+                <div class="w3-row w3-border w3-center">
+                    <div class="w3-container w3-third w3-hover-deep-purple">
+                        <h3>Graphics & Logo Design</h3>
+                        <p>The w3-half class uses 50% of the parent container.</p>
+                        <p>On screens smaller than 601 pixels it resizes 100%.</p>
+                        <a href="#" class="w3-btn w3-red w3-s">Know More </a>
+                    </div>
+                    <div class="w3-container w3-third w3-light-gray w3-hover-deep-purple">
+                        <h3>Maintanance & Support</h3>
+                        <p>The w3-half class uses 50% of the parent container.</p>
+                        <p>On screens smaller than 601 pixels it resizes 100%.</p>
+                        <a href="#" class="w3-btn w3-red w3-s">Know More </a>
+                    </div>
+                </div>
             </div>
-            <div class="w3-container w3-half">
+            <div class="w3-container w3-border w3-third">
                 <form action="{% url 'contact_request' %}" method="POST" autocomplete="off">
                     {% csrf_token %}
                     {{ form.as_p }}
@@ -284,10 +319,10 @@
         ContactProjectIdea.setAttribute("placeholder", "Tell us a bit about your project or idea, so we can start a conversation.");
         ContactProjectIdea.classList.add("w3-input");
 
-        ContactDateTime.classList.add("w3-half");
+        //ContactDateTime.classList.add("w3-half");
         ContactDateTime.setAttribute("type", "datetime-local");
 
-        ContactMobileNumber.classList.add("w3-half");
+        //ContactMobileNumber.classList.add("w3-half");
         ContactMobileNumber.setAttribute("type", "tel");
         ContactMobileNumber.setAttribute("pattern", "[0-9]{10}");
         ContactMobileNumber.setAttribute("placeholder", "e.g. 999999XXXX");

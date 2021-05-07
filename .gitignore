@@ -5,6 +5,8 @@
 # Project Database 
 /ecorpin_corp/db.sqlite3
 
+# escape folder
+/new section
 
 
 # Project static file
