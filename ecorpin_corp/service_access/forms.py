@@ -18,5 +18,3 @@ class ContactRequestForm(forms.ModelForm):
         }
 
 
-class ServiceAccessLoginForm(forms.ModelForm):
-    #form
