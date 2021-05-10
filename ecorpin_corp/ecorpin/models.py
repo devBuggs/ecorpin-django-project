@@ -50,8 +50,4 @@ class feedback(models.Model):
     def __str__(self):
         return self.visitor_email
 
-#----------------------------N-E-W_P-R-O-J-E-C-T
 
-
-
-#----------------------------C-O-N-T-A-C-T_T-Y-P-E
