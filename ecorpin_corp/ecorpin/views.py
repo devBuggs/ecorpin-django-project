@@ -81,7 +81,8 @@ def feedback_create(request):
     context = { 'form': form, 'info': info}
     return render(request, 'feedback.html', context)
 
-
+def service(request):
+    return HttpResponse("<h1>Ecorpin Secure Server - Services</h1>")
 
 def test(request):
     return render(request, 'test.html', context=None)

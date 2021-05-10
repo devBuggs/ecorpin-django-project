@@ -8,9 +8,10 @@ from .models import ContactRequest
 from .forms import ContactRequestForm
 
 # Create your views here.
-def main(request):
+
+def service_access_view(request):
     #service access backend
-    return HttpResponseRedirect('/')
+    return HttpResponse('<h1>Ecorpin Secure Server - Service Access</h1>')
 
 def contact_request(request):
     serverMsg = ''

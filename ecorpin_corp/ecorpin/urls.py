@@ -6,10 +6,8 @@ from . import views
 urlpatterns = [
     path('', views.index_ecorpin, name='index'),
     path('test', views.test, name='test'),
-
-    # Retrive Data Links
+    path('service', views.service, 'service'),
     path('feedback', views.feedback_create, name='feedback'),
-    
     path('about', views.about, name='about'),
     path('careers', views.careers, name='careers'),
     path('contact', views.contact, name='contact'),
@@ -17,5 +15,5 @@ urlpatterns = [
     path('team', views.team, name='team'),
     path('privacy', views.privacy, name='privacy'),
     path('server_maintenance', views.maintenance, name='maintenance'),
-    path('covid', views.covid, name='covid')
+    path('covid', views.covid, name='covid'),
 ]
