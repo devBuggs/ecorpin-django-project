@@ -8,8 +8,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('ecorpin.urls')),
     path('', include('service_access.urls')),
-    path('', include('block_bit')),
-    path('ar/', include('ecorpin_ar')),
-    path('vr/', include('ecorpin_vr')),
-    path('', include('lab')),
+    path('', include('bbit.urls')),
+    
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

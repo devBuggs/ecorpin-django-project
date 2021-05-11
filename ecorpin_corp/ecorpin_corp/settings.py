@@ -38,10 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ecorpin.apps.EcorpinConfig',
     'service_access.apps.ServiceAccessConfig',
-    'lab.apps.LabConfig',
-    'ecorpin_ar.apps.EcorpinArConfig',
-    'ecorpin_vr.apps.EcorpinVrConfig',
-    'block_bit.apps.BlockBitConfig',
+    'bbit.apps.BbitConfig',
 ]
 
 MIDDLEWARE = [
