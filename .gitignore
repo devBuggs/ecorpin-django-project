@@ -12,3 +12,4 @@
 # Project static file
 *.css
 *.sqlite3
+*.apk
