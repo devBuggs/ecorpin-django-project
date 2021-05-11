@@ -25,7 +25,7 @@ SECRET_KEY = 'ml2%cqt%l7^9o7v)e@zmx@$hqvzi59%cp!qnp8$%55)@!a0^*h'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -39,6 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ecorpin.apps.EcorpinConfig',
     'service_access.apps.ServiceAccessConfig',
+    'lab.apps.LabConfig',
+    'ecorpin_ar.apps.EcorpinArConfig',
+    'ecorpin_vr.apps.EcorpinVrConfig',
+    'block_bit.apps.BlockBitConfig',
 ]
 
 MIDDLEWARE = [

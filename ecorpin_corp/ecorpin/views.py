@@ -17,7 +17,7 @@ def index_ecorpin(request):
     context = {
         'latest_spotlight': spotlightData,
     }
-    return render(request, 'index.html', context)
+    return render(request, 'ecorpin/index.html', context)
 
 def privacy(request):
     info = endpoint_info.objects.get(end_point="Privacy Policy")
@@ -25,7 +25,7 @@ def privacy(request):
     context = {
         'info':info,
     }
-    return render(request, 'privacy.html', context)
+    return render(request, 'ecorpin/privacy.html', context)
 
 def team(request):
     info = endpoint_info.objects.get(end_point="Team")
@@ -35,7 +35,7 @@ def team(request):
         'info':info,
         'ecorpians_list':ecorpians,
     }
-    return render(request, 'team.html', context)
+    return render(request, 'ecorpin/team.html', context)
 
 def tou(request):
     info = endpoint_info.objects.get(end_point="Terms of Use")
@@ -43,7 +43,7 @@ def tou(request):
     context = {
         'info':info,
     }
-    return render(request, 'tou.html', context)
+    return render(request, 'ecorpin/tou.html', context)
 
 def contact(request):
     info = endpoint_info.objects.get(end_point="Contact")
@@ -51,7 +51,7 @@ def contact(request):
     context = {
         'info':info,
     }
-    return render(request, 'contact.html', context)
+    return render(request, 'ecorpin/contact.html', context)
 
 def careers(request):
     info = endpoint_info.objects.get(end_point='Careers')
@@ -59,7 +59,7 @@ def careers(request):
     context = {
         'info':info,
     }
-    return render(request, 'careers.html', context)
+    return render(request, 'ecorpin/careers.html', context)
 
 def about(request):
     info = endpoint_info.objects.get(end_point='About')
@@ -67,7 +67,7 @@ def about(request):
     context = {
         'info':info,
     }
-    return render(request, 'about.html', context)
+    return render(request, 'ecorpin/about.html', context)
 
 def maintenance(request):
     info = endpoint_info.objects.get(end_point='Server Maintenance')
@@ -75,14 +75,14 @@ def maintenance(request):
     context = {
         'info':info,
     }
-    return render(request, 'maintenance.html', context)
+    return render(request, 'ecorpin/maintenance.html', context)
 
 def covid(request):
     info = endpoint_info.objects.get(end_point='Ecorpin Covid-19 Response')
     context = {
         'info':info,
     }
-    return render(request, 'covid.html', context)
+    return render(request, 'ecorpin/covid.html', context)
 
 def feedback_create(request):
     serverMsg = ''
@@ -101,7 +101,7 @@ def feedback_create(request):
         'form': form,
         'info': info,
         }
-    return render(request, 'feedback.html', context)
+    return render(request, 'ecorpin/feedback.html', context)
 
 def service(request):
     return HttpResponse("<h1>Ecorpin Secure Server - Services</h1>")
