@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'ecorpin.apps.EcorpinConfig',
     'service_access.apps.ServiceAccessConfig',
     'bbit.apps.BbitConfig',
+    'works.apps.WorksConfig',
 ]
 
 MIDDLEWARE = [

@@ -9,5 +9,6 @@ urlpatterns = [
     path('', include('ecorpin.urls')),
     path('', include('service_access.urls')),
     path('', include('bbit.urls')),
+    path('', include('works.urls')),
     
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
