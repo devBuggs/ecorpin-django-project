@@ -22,4 +22,4 @@
 *.jpg
 
 *.html
-*.cpython.pyc
+*.cpython-37.pyc
