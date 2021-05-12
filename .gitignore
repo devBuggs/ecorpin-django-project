@@ -8,8 +8,18 @@
 # escape folder
 /new section
 
+/bbit/__pycache__
+/ecorpin/__pycache__
+/ecorpin_corp/__pycache__
+/service_access/__pycache__
+/works/__pycache__
+
 
 # Project static file
 *.css
 *.sqlite3
 *.apk
+*.jpg
+
+*.html
+*.pyc
