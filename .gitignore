@@ -22,4 +22,4 @@
 *.jpg
 
 *.html
-*.pyc
+*.cpython.pyc
