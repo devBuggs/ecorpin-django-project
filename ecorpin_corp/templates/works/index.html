@@ -85,7 +85,7 @@
         <div class="w3-third w3-padding-small">
           <div class="w3-border w3-center w3-border-black w3-padding-32 w3-round-large">
             <i class="fas fa-users fa-4x"></i>
-            <h2 class="w3-text-white timer count-title count-number" id="clients" data-to="100" data-speed="1500">0</h2>
+            <h2 class="w3-text-white timer count-title count-number" id="clients" data-to="{{ stats.client_stat }}" data-speed="1500">0</h2>
             <p class="leading-relaxed">client's</p>
           </div>
         </div>
@@ -94,7 +94,7 @@
         <div class="w3-third w3-padding-small">
           <div class="w3-border w3-center w3-border-black w3-padding-32 w3-round-large">
             <i class="fas fa-code fa-4x"></i>
-            <h2 class="w3-text-white timer count-title count-number" id="projects" data-to="500" data-speed="1500">0</h2>
+            <h2 class="w3-text-white timer count-title count-number" id="projects" data-to="{{ stats.project_stat }}" data-speed="1500">0</h2>
             <p class="leading-relaxed">project's</p>
           </div>
         </div>
@@ -103,11 +103,12 @@
         <div class="w3-third w3-padding-small">
           <div class="w3-border w3-center w3-border-black w3-padding-32 w3-round-large">
             <i class="fas fa-tools fa-4x"></i>
-            <h2 class="w3-text-white timer count-title count-number" id="services" data-to="800" data-speed="1500">0</h2>
+            <h2 class="w3-text-white timer count-title count-number" id="services" data-to="{{ stats.service_stat }}" data-speed="1500">0</h2>
             <p class="leading-relaxed">service's</p>
           </div>
         </div>
       </div>
+      
     </div>
 
     <!-- Client review section -->

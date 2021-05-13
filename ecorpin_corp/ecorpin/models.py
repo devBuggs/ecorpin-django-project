@@ -50,4 +50,7 @@ class feedback(models.Model):
     def __str__(self):
         return self.visitor_email
 
-
+class EcorpinStat(models.Model):
+    client_stat = models.IntegerField()
+    project_stat = models.IntegerField()
+    service_stat = models.IntegerField()
