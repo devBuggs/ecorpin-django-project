@@ -44,9 +44,10 @@
   <!-- Sidebar/menu -->
   <nav class="w3-sidebar w3-bar-block w3-black w3-animate-right w3-top w3-text-light-grey w3-large" style="z-index:3;width:250px;font-weight:bold;display:none;right:0;" id="mySidebar">
     <a href="javascript:void()" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-32">CLOSE</a>
-    <a href="javascript:void()" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">PORTFOLIO</a>
-    <a href="javascript:void()" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">ABOUT ME</a>
-    <a href="javascript:void()" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">CONTACT</a>
+    <a href="{% url 'contact_request' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">NEW PROJECT</a>
+    <a href="{% url 'service' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">SERVICES</a>
+    <a href="{% url 'contact' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">CONTACT</a>
+    <a href="{% url 'about' %}" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">ABOUT US</a>
   </nav>
 
   <!-- Top menu on small screens -->
