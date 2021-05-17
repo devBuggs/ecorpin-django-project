@@ -1,0 +1,39 @@
+{% extends 'service_access/base.html' %}
+
+{% block title %} Service Access | Ecorpin {% endblock %}
+
+
+{% block content %}
+<div>
+  <!-- Header -->
+  <div class="w3-opacity">
+    <span class="w3-button w3-xxlarge w3-white w3-right" onclick="w3_open()"><i class="fa fa-bars"></i></span>
+    <div class="w3-clear"></div>
+    <header class="w3-center w3-margin-bottom">
+      <h1 class="w3-wide"><b>Ecorpin Service Access</b></h1>
+      <p><b>ecorpin is at your fingertip...</b></p>
+      <!-- <p class="w3-padding-16"><button class="w3-button w3-black" onclick="myFunction()">Toggle Grid Padding</button></p> -->
+    </header>
+  </div>
+
+  <div class="w3-container w3-auto">
+    <!-- container for smoothness-->
+    <form action="#" method="POST">
+      <h2 class="w3-center w3-xxlarge w3-auto">Login with Service ID</h2>
+      <!-- client account login pannel -->
+      <input type="text" class="w3-border w3-hover-border-black w3-white" name="email"
+        placeholder="enter your username or email" autocomplete="off" required>
+      <input type="password" class="w3-border w3-hover-border-black w3-white" name="password"
+        placeholder="enter your password" autocomplete="off" required>
+      <button class="button button3" type="submit">Login</button>
+    </form>
+  </div>
+
+  {% if errData %}
+  <div id="snackbar">{{ errData }}</div>
+  {% else %}
+  <div id="snackbar">Welcome to Ecorpin Service Access</div>
+  {% endif %}
+</div>
+
+{% endblock %}
