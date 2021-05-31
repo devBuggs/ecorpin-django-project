@@ -21,7 +21,6 @@ def index_ecorpin(request):
 
 def privacy(request):
     info = endpoint_info.objects.get(end_point="Privacy Policy")
-    #Content Query
     context = {
         'info':info,
     }
