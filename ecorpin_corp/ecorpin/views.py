@@ -28,7 +28,6 @@ def privacy(request):
 
 def team(request):
     info = endpoint_info.objects.get(end_point="Team")
-    #Content Query
     ecorpians = list(ecorpian.objects.all().order_by('joinDate'))
     context = {
         'info':info,
