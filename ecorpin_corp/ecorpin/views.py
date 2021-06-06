@@ -44,7 +44,6 @@ def tou(request):
 
 def contact(request):
     info = endpoint_info.objects.get(end_point="Contact")
-    #Content Query
     context = {
         'info':info,
     }
