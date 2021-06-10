@@ -66,7 +66,6 @@ def about(request):
 
 def maintenance(request):
     info = endpoint_info.objects.get(end_point='Server Maintenance')
-    #Content Query
     context = {
         'info':info,
     }
