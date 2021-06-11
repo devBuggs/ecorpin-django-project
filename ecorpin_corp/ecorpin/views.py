@@ -58,7 +58,6 @@ def careers(request):
 
 def about(request):
     info = endpoint_info.objects.get(end_point='About')
-    #Content Query
     context = {
         'info':info,
     }
