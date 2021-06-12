@@ -37,6 +37,7 @@ def team(request):
 
 def tou(request):
     info = endpoint_info.objects.get(end_point="Terms of Use")
+    #Context query
     context = {
         'info':info,
     }
