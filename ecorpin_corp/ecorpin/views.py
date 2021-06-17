@@ -53,6 +53,7 @@ def contact(request):
 
 def careers(request):
     info = endpoint_info.objects.get(end_point='Careers')
+    #Context Data
     context = {
         'info':info,
     }
