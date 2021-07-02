@@ -2,9 +2,9 @@ from django import forms
 
 from .models import feedback
 
-class feedback_form(forms.ModelForm):
+class FeedbackForm(forms.ModelForm):
     class Meta:
-        model = feedback
+        model = Feedback
         fields = ('visitor_name', 'visitor_organization', 'visitor_email', 'feedback_msg')
         labels = {
             'visitor_name':'Full Name',

@@ -1,26 +1,26 @@
 from django.contrib import admin
 
-from .models import spotlight, endpoint_info, ecorpian, feedback, EcorpinStat
+from .models import Spotlight, Endpoint_info, Ecorpian, Feedback, EcorpinStat
 
-class spotlightAdmin(admin.ModelAdmin):
+class SpotlightAdmin(admin.ModelAdmin):
     list_display = ('spotlight_date', 'spotlight_info')
 
-class ecorpianAdmin(admin.ModelAdmin):
+class EcorpianAdmin(admin.ModelAdmin):
     list_display = ('designation', 'name', 'email', 'office_address')
     list_filter = ['office_address']
 
-class endpoint_infoAdmin(admin.ModelAdmin):
+class Endpoint_infoAdmin(admin.ModelAdmin):
     list_display = ('end_point', 'sideNav', 'title')
 
-class feedbackAdmin(admin.ModelAdmin):
+class FeedbackAdmin(admin.ModelAdmin):
     list_display = ('visitor_name', 'visitor_organization', 'visitor_email')
 
 class EcorpinStatAdmin(admin.ModelAdmin):
     list_display = ('client_stat', 'project_stat', 'service_stat')
 
 # Register your models here.
-admin.site.register(spotlight, spotlightAdmin)
-admin.site.register(endpoint_info, endpoint_infoAdmin)
-admin.site.register(ecorpian, ecorpianAdmin)
-admin.site.register(feedback, feedbackAdmin)
+admin.site.register(Spotlight, SpotlightAdmin)
+admin.site.register(Endpoint_info, Endpoint_infoAdmin)
+admin.site.register(Ecorpian, EcorpianAdmin)
+admin.site.register(Feedback, FeedbackAdmin)
 admin.site.register(EcorpinStat, EcorpinStatAdmin)

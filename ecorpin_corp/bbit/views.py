@@ -1,12 +1,12 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 
-from ecorpin.models import ecorpian
+from ecorpin.models import Ecorpian
 
 # Create your views here.
 def index_bbit(request):
     #Content Query
-    dev = ecorpian.objects.get(name='Bhagwan Singh')
+    dev = Ecorpian.objects.get(name='Bhagwan Singh')
     print("------->", dev)
     context = {
         'devName': str(dev),
