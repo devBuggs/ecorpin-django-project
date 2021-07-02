@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import feedback
+from .models import Feedback
 
 class FeedbackForm(forms.ModelForm):
     class Meta:
