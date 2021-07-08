@@ -2,19 +2,14 @@
 
 <!-- Endpoint Information -->
 {% if info %}
-{% block titile %} {{ info.title }} {% endblock %}
-
-{% block end-point %} {{ info.end_point }} {% endblock %}
-
-{% block side-nav %} {{ info.sideNav }} {% endblock %}
-
-{% block main-headBox %}<h2><b>{{ info.main_headBox }}</b></h2>{% endblock %}
-
-{% block edge-headBox %}<h3><b>{{ info.edge_headBox }}</b></h3>{% endblock %}
-
+    {% block titile %} {{ info.title }} {% endblock %}
+    {% block end-point %} {{ info.end_point }} {% endblock %}
+    {% block side-nav %} {{ info.sideNav }} {% endblock %}
+    {% block main-headBox %}<h2><b>{{ info.main_headBox }}</b></h2>{% endblock %}
+    {% block edge-headBox %}<h3><b>{{ info.edge_headBox }}</b></h3>{% endblock %}
 {% endif %}
 
 <!-- Content Block -->
 {% block content %}
-<h1>Database Content : TOU</h1>
+    <h1>Database Content : template</h1>
 {% endblock%}

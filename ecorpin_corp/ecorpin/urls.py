@@ -3,6 +3,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 from . import views
 
+
+app_name = 'ecorpin'
 urlpatterns = [
     path('', views.index_ecorpin, name='index'),
     path('service/', views.service, name='service'),

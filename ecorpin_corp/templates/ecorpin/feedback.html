@@ -2,61 +2,55 @@
 
 <!-- Endpoint Information -->
 {% if info %}
-{% block titile %} {{ info.title }} {% endblock %}
-
-{% block end-point %} {{ info.end_point }} {% endblock %}
-
-{% block side-nav %} {{ info.sideNav }} {% endblock %}
-
-{% block main-headBox %}<h2><b>{{ info.main_headBox }}</b></h2><br>
-<p>We'd love to know what you think about our services so that we can make sure the experience is the best it can be.
-</p>{% endblock %}
-
-{% block edge-headBox %}<h4><b>{{ info.edge_headBox }}</b></h4>{% endblock %}
-
+    {% block titile %} {{ info.title }} {% endblock %}
+    {% block end-point %} {{ info.end_point }} {% endblock %}
+    {% block side-nav %} {{ info.sideNav }} {% endblock %}
+    {% block main-headBox %}<h2><b>{{ info.main_headBox }}</b></h2><br>
+        <p>We'd love to know what you think about our services so that we can make sure the experience is the best it can be.</p>
+    {% endblock %}
+    {% block edge-headBox %}<h4><b>{{ info.edge_headBox }}</b></h4>{% endblock %}
 {% endif %}
 
 {% block content %}
-<form name="feedback_form" action="{% url 'feedback' %}" method="POST">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button class="search_button" id="submit_feedback_data" type="submit">Submit Response</button>
-</form>
+    <form name="feedback_form" action="{% url 'feedback' %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="search_button" id="submit_feedback_data" type="submit">Submit Response</button>
+    </form>
 
-<script>
-    document.getElementById("submit_feedback_data").addEventListener("click", function () {
-        // data validation in form
-        var n = document.forms["feedback_form"]["visitor_name"].value;
-        var e = document.forms["feedback_form"]["visitor_email"].value;
-        var o = document.forms["feedback_form"]["visitor_organization"].value;
-        var m = document.forms["feedback_form"]["feedback_msg"].value;
+    <script>
+        document.getElementById("submit_feedback_data").addEventListener("click", function () {
+            // data validation in form
+            var n = document.forms["feedback_form"]["visitor_name"].value;
+            var e = document.forms["feedback_form"]["visitor_email"].value;
+            var o = document.forms["feedback_form"]["visitor_organization"].value;
+            var m = document.forms["feedback_form"]["feedback_msg"].value;
 
-        if (n && e && o && m) {
-            // on submission successful message 
-            let timerInterval
-            Swal.fire({
-                title: "thank's for your valuable feedback",
-                html: 'It will close in <b></b> milliseconds.',
-                timer: 2000,
-                timerProgressBar: true,
-                onBeforeOpen: () => {
-                    Swal.showLoading()
-                    timerInterval = setInterval(() => {
-                        const content = Swal.getContent()
-                        if (content) {
-                            const b = content.querySelector('b')
-                            if (b) {
-                                b.textContent = Swal.getTimerLeft()
+            if (n && e && o && m) {
+                // on submission successful message 
+                let timerInterval
+                Swal.fire({
+                    title: "thank's for your valuable feedback",
+                    html: 'It will close in <b></b> milliseconds.',
+                    timer: 2000,
+                    timerProgressBar: true,
+                    onBeforeOpen: () => {
+                        Swal.showLoading()
+                        timerInterval = setInterval(() => {
+                            const content = Swal.getContent()
+                            if (content) {
+                                const b = content.querySelector('b')
+                                if (b) {
+                                    b.textContent = Swal.getTimerLeft()
+                                }
                             }
-                        }
-                    }, 100)
-                },
-                onClose: () => {
-                    clearInterval(timerInterval)
-                }
-            });
-        }
-    });
-</script>
-
+                        }, 100)
+                    },
+                    onClose: () => {
+                        clearInterval(timerInterval)
+                    }
+                });
+            }
+        });
+    </script>
 {% endblock%}
