@@ -19,23 +19,25 @@
             <a href="mailto:ecorpin.help@gmail.com" title="Write Us">Email: <u>ecorpin.help@gmail.com</u></a>
         </p>
 
-        <h3><br> Have an idea!.. start a project with <a href="{% url 'team' %}" title="Ecorpin Developers"><u>#ecorpians</u></a></h3>
+        <h3><br> Have an idea!.. start a project with <a href="{% url 'ecorpin:team' %}" title="Ecorpin Developers"><u>#ecorpians</u></a></h3>
         <p> Tell us a bit about your project or idea, so we can start a conversation.<br>
-            <button class="search_button"><a href="{% url 'contact_request' %}">START A PROJECT WITH US</a></button>
+            <button class="search_button"><a href="{% url 'service_access:contact_request' %}">START A PROJECT WITH US</a></button>
         </p>
 
         <h3><br> About Ecorpin Corporation</h3>
-        <p>Know more at our <a href="{% url 'about' %}" title="About Ecorpin"> <u> About Us</u></a> page. <br> For questions about Ecorpin,
+        <p>Know more at our <a href="{% url 'ecorpin:about' %}" title="About Ecorpin"> <u> About Us</u></a> page. <br> For questions about Ecorpin,
             email us at <a href="mailto:ecorpin.help@gmail.com" title="Write Us"><u>ecorpin.help@gmail.com</u></a>.
         </p>
 
         <h3><br> Directory</h3>
-        <div>You can find people, products, and services by using the main search function on this site (<a href="{% url 'maintenance' %}"><u>go to Search Pannel</u></a>).</div>
+        <div>You can find people, products, and services by using the main search function on this site (<a href="{% url 'ecorpin:maintenance' %}"><u>go to Search Pannel</u></a>).</div>
 
         <h3><br> Website Feedback</h3>
         <div>We welcome your feedback about the Ecorpin Corporation. <br>
             We'd love to know what you think about our services so that we can make sure the experience is the best it can be.<br>
-            <button class="search_button"><a href="{% url 'feedback' %}">LEAVE FEEDBACK</a></button>
+            <button class="search_button">
+                <a href="{% url 'ecorpin:feedback' %}">LEAVE FEEDBACK</a>
+            </button>
         </div>
 
         <h3><br> Help Us</h3>

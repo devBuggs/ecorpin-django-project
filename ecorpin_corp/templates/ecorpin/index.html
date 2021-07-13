@@ -74,16 +74,16 @@
 		style="z-index:3;width:300px;font-weight:bold" id="mySidebar">
 		<a href="{% url 'ecorpin:index' %}"><h3 class="w3-padding-32 w3-center w3-pale-green w3-text-teal"><b>Ecorpin Corporation</b></h3></a>
 		<a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-padding w3-hide-large">CLOSE</a>
-		<a href="{% url 'contact_request' %}" onclick="w3_close()" class="w3-bar-item w3-button">Start Project</a>
+		<a href="{% url 'service_access:contact_request' %}" onclick="w3_close()" class="w3-bar-item w3-button">Start Project</a>
 		<a href="{% url 'ecorpin:maintenance' %}" onclick="w3_close()" class="w3-bar-item w3-button">Ecorpin Lab.</a>
-		<a href="{% url 'service_access' %}" onclick="w3_close()" class="w3-bar-item w3-button">Service Access</a>
+		<a href="{% url 'service_access:service_access' %}" onclick="w3_close()" class="w3-bar-item w3-button">Service Access</a>
 		<a href="{% url 'ecorpin:maintenance' %}" onclick="w3_close()" class="w3-bar-item w3-button">Ecorpin AR/VR</a>
 
 		<div class="w3-display-bottomleft w3-left-align w3-white">
 			<p class="w3-medium w3-margin w3-text-teal">Ecorpin Corporation <br> INDIA, Pacific Asia</p>
 			<ul class="w3-stretch ">
 				<li><a href="{% url 'ecorpin:service' %}" class="w3-border-bottom w3-hover-border-teal w3-hover-text-teal">Service</a></li>
-				<li><a href="{% url 'projects' %}" class="w3-border-bottom w3-hover-border-teal w3-hover-text-teal">Work</a></li>
+				<li><a href="{% url 'works:projects' %}" class="w3-border-bottom w3-hover-border-teal w3-hover-text-teal">Work</a></li>
 				<li><a href="{% url 'ecorpin:about' %}" class="w3-border-bottom w3-hover-border-teal w3-hover-text-teal">About</a></li>
 				<li><a href="{% url 'ecorpin:contact' %}" class="w3-border-bottom w3-hover-border-teal w3-hover-text-teal">Contact</a></li>
 				<li><a href="{% url 'ecorpin:team' %}" class="w3-border-bottom w3-hover-border-teal w3-hover-text-teal">Team</a></li>
@@ -131,9 +131,9 @@
 				<hr class="w3-opacity">
 				<div>
 					<h4 class="">We inspire our extraordinary team, and they inspire us right back.</h4>
-					<p class="w3-text-blue-gray">Have an idea!.. start a <a class="w3-text-sand" title="Hire Us" href="{% url 'contact_request' %}">project</a>
+					<p class="w3-text-blue-gray">Have an idea!.. start a <a class="w3-text-sand" title="Hire Us" href="{% url 'service_access:contact_request' %}">project</a>
 						with <a class="w3-text-sand" title="Ecorpin Developers" href="{% url 'ecorpin:team' %}">#ecorpians</a><br>
-						<a href="{% url 'contact_request' %}" class="search_button w3-boarder" style="text-decoration: none;">START A PROJECT</a>
+						<a href="{% url 'service_access:contact_request' %}" class="search_button w3-boarder" style="text-decoration: none;">START A PROJECT</a>
 					</p>
 				</div>
 			</div>

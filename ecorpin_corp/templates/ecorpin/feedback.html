@@ -12,7 +12,7 @@
 {% endif %}
 
 {% block content %}
-    <form name="feedback_form" action="{% url 'feedback' %}" method="POST">
+    <form name="feedback_form" action="{% url 'ecorpin:feedback' %}" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <button class="search_button" id="submit_feedback_data" type="submit">Submit Response</button>
