@@ -16,5 +16,3 @@ class ContactRequestForm(forms.ModelForm):
             'contact_mobile': 'Contact Number',
             'contact_name': 'Name'
         }
-
-
