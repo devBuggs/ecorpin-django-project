@@ -41,7 +41,7 @@ def service_login_view(request):
             service_id = login_data['email']
             password = login_data['password']
             user = authenticate(username=service_id, password=password)
-            login(request, user)
+            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             if next:
                 return redirect(next)
             return redirect(ServiceDashboardView)
