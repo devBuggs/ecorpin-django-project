@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.utils import timezone
-from django.contrib.auth import authenticate, get_user_model, login, logout
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
+from django.urls import reverse
+
 
 from .models import ContactRequest
 from .forms import ContactRequestForm
@@ -33,24 +35,26 @@ def contact_request(request):
         context = { 'form': form, }
         return render(request, 'service_access/contact_request.html', context)
 
+
+'''
 def service_login_view(request):
     next = request.GET.get('next')
     if request.method == 'POST':
         login_data = request.POST
-        if login_data['email'] != '' and login_data['password'] != '':
-            service_id = login_data['email']
+        if login_data['username'] != '' and login_data['password'] != '':
+            service_id = login_data['username']
             password = login_data['password']
-            user = authenticate(username=service_id, password=password)
-            login(request, user, backend='django.contrib.auth.backends.ModelBackend')
+            user = authenticate(request, username=service_id, password=password)
+            login(request, user)
+            #login(request, user, backend='django.contrib.auth.backends.ModelBackend')
             if next:
                 return redirect(next)
-            return redirect(ServiceDashboardView)
+            # Redirect to a success page.
+            return redirect('/')
+            #return redirect(contact_request)
     return render(request, 'service_access/serviceLogin.html')
 
-class ServiceDashboardView(TemplateView):
-    template_name = 'service_access/dashboard.html'
-    #model = ServiceDashboard
-
-def service_logout_view():
+def logout_view(request):
     logout(request)
     return redirect(service_login_view)
+'''

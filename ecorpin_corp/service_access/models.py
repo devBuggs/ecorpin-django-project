@@ -1,5 +1,6 @@
 import datetime
 from django.db import models
+from django.contrib import auth
 
 from django.utils import timezone
 
@@ -23,28 +24,43 @@ class ContactRequest(models.Model):
     def __str__(self):
         return self.project_title
 
+class ServiceUser(auth.models.User, auth.models.PermissionsMixin):
+
+    def __str__():
+        return "@{}".format(self.username)
 
 
+
+'''
 # Project development phases model
 class DevelopmentPhase(models.Model):
     name = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.name
+
 # service project model 
 class ServiceProject(models.Model):
-    #username = ''
-    #service_id = ''
-    project_title = models.CharField(max_length=100)
-    #start_date = ''
-    #deadline = ''
-    live_server_url = models.URLField(blank=True)
-    static_url = models.URLField(blank=True)
-    #contact_details = ''
-    payment_info = ''
-    technology = models.CharField(max_length=100)
-    framework = models.CharField(max_length=100)
+    username = models.ForeignKey(User, on_delete=models.CASCADE)
+    email = models.EmailField(blank=True)
+    mobile = models.CharField(max_length=15, blank=True)
+    service_id = models.CharField(max_length=50)
+    title = models.CharField(max_length=100)
     description = models.CharField(max_length=500)
+    start_date = models.DateTimeField(default=timezone.now)
+    deadline = models.DateTimeField(blank=True)
+    technology = models.CharField(max_length=50)
+    framework = models.CharField(max_length=50)
     platform = models.CharField(max_length=100)
     development_phase = models.ForeignKey(DevelopmentPhase, on_delete=models.CASCADE)
     progress = models.CharField(max_length=100)
     status = models.CharField(max_length=100)
+    live_url = models.URLField(blank=True)
+    static_url = models.URLField(blank=True)
+    payment_status = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return self.service_id
+
+'''
 
