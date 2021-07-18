@@ -10,6 +10,7 @@ from .models import ClientReview
 def projects_view(request):
     reviewList = ClientReview.objects.all()
     stats = EcorpinStat.objects.get(pk=1)
+    #logic for the recent works showcasing details with image...
     context = {
         'review_list' : reviewList,
         'stats' : stats,

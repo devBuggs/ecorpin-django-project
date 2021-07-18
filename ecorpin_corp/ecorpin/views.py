@@ -10,6 +10,7 @@ from .forms import FeedbackForm
 
 # Create your views here.
 def fevicon_ecorpin(request):
+    # Return the fevicon asset
     pass
 
 def index_ecorpin(request):
@@ -44,6 +45,7 @@ def tou(request):
 
 def contact(request):
     info = Endpoint_info.objects.get(end_point="Contact")
+    # logic for dynamic org. contact details from database
     context = {
         'info':info,
     }
@@ -51,6 +53,7 @@ def contact(request):
 
 def careers(request):
     info = Endpoint_info.objects.get(end_point='Careers')
+    # Logic for the opening carrier or description here
     context = {
         'info':info,
     }
@@ -65,6 +68,7 @@ def about(request):
 
 def maintenance(request):
     info = Endpoint_info.objects.get(end_point='Server Maintenance')
+    # logic for maintenance details from database 
     context = {
         'info':info,
     }
@@ -72,6 +76,7 @@ def maintenance(request):
 
 def covid(request):
     info = Endpoint_info.objects.get(end_point='Ecorpin Covid-19 Response')
+    #covid dynamic details from database - NOTIFICATION 
     context = {
         'info':info,
     }
@@ -97,4 +102,9 @@ def feedback_create(request):
     return render(request, 'ecorpin/feedback.html', context)
 
 def service(request):
+    # logic for the serving data of ecorpin service from database
     return HttpResponse("<h1>Ecorpin Secure Server - Services</h1>")
+
+def search_view(request):
+    #logic for the user search 
+    pass

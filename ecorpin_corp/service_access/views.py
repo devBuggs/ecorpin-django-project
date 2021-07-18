@@ -7,7 +7,6 @@ from django.contrib.auth.decorators import login_required
 from django.views.generic import TemplateView
 from django.urls import reverse
 
-
 from .models import ContactRequest
 from .forms import ContactRequestForm
 
@@ -36,9 +35,9 @@ def contact_request(request):
         return render(request, 'service_access/contact_request.html', context)
 
 
-'''
 def service_login_view(request):
     next = request.GET.get('next')
+    '''
     if request.method == 'POST':
         login_data = request.POST
         if login_data['username'] != '' and login_data['password'] != '':
@@ -52,9 +51,32 @@ def service_login_view(request):
             # Redirect to a success page.
             return redirect('/')
             #return redirect(contact_request)
+    '''
     return render(request, 'service_access/serviceLogin.html')
 
+'''
 def logout_view(request):
     logout(request)
     return redirect(service_login_view)
 '''
+
+def service_login_view(request):
+    # logic for authentication of users via service_ID and loging to system
+    pass
+
+def service_logout(request):
+    #logic for logout authenticated user from service access
+    pass
+
+def service_dashboard(request):
+    #logic for the service dashboard of user
+    pass
+
+def service_update():
+    # logic for the service/profile/information update request
+    pass
+
+def access_support_view():
+    #logic for the specific user support history with org. support
+    pass
+
