@@ -65,8 +65,8 @@ def service_login_view(request):
     pass
 
 def service_logout(request):
-    #logic for logout authenticated user from service access
-    pass
+    logout(request)
+    return redirect(service_login_view)
 
 def service_dashboard(request):
     #logic for the service dashboard of user

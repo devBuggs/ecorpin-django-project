@@ -1,7 +1,6 @@
 import datetime
 from django.db import models
 from django.contrib import auth
-
 from django.utils import timezone
 
 # Create your models here.
@@ -24,14 +23,13 @@ class ContactRequest(models.Model):
     def __str__(self):
         return self.project_title
 
+
+'''
 class ServiceUser(auth.models.User, auth.models.PermissionsMixin):
 
     def __str__():
         return "@{}".format(self.username)
 
-
-
-'''
 # Project development phases model
 class DevelopmentPhase(models.Model):
     name = models.CharField(max_length=100)
