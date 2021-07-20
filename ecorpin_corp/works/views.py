@@ -15,5 +15,6 @@ def projects_view(request):
         'review_list' : reviewList,
         'stats' : stats,
     }
+    #return response with data
     #return HttpResponse("<h1>Ecorpin Secure Server - Projects </h1>")
     return render(request, 'works/index.html', context)
