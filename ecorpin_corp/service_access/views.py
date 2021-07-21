@@ -1,21 +1,10 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseRedirect
-from django.utils import timezone
-from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
-from django.views.generic import TemplateView
-from django.urls import reverse
+from django.views import View
 
 from .models import ContactRequest
 from .forms import ContactRequestForm
 
 # Create your views here.
-
-def service_access_view(request):
-    #service access backend
-    #return HttpResponse('<h1>Ecorpin Secure Server - Service Access</h1>')
-    return render(request, 'service_access/serviceLogin.html', context=None)
 
 def contact_request(request):
     serverMsg = ''
@@ -34,49 +23,26 @@ def contact_request(request):
         context = { 'form': form, }
         return render(request, 'service_access/contact_request.html', context)
 
-
-def service_login_view(request):
-    next = request.GET.get('next')
-    '''
-    if request.method == 'POST':
-        login_data = request.POST
-        if login_data['username'] != '' and login_data['password'] != '':
-            service_id = login_data['username']
-            password = login_data['password']
-            user = authenticate(request, username=service_id, password=password)
-            login(request, user)
-            #login(request, user, backend='django.contrib.auth.backends.ModelBackend')
-            if next:
-                return redirect(next)
-            # Redirect to a success page.
-            return redirect('/')
-            #return redirect(contact_request)
-    '''
-    return render(request, 'service_access/serviceLogin.html')
-
-'''
-def logout_view(request):
-    logout(request)
-    return redirect(service_login_view)
-'''
-
-def service_login_view(request):
-    # logic for authentication of users via service_ID and loging to system
-    pass
-
 def service_logout(request):
     logout(request)
     return redirect(service_login_view)
 
-def service_dashboard(request):
+class ServiceLoginView(View):
+    template_name='service_access/service_login.html'
+    def get(self, request):
+        # <view logic>
+        return render(request, 'service_access/service_login.html')
+
+# Class Dashboard
+class ServiceDashboardListView():
     #logic for the service dashboard of user
     pass
 
-def service_update():
+class ServiceUpdateView():
     # logic for the service/profile/information update request
     pass
 
-def access_support_view():
+class ServiceSupportView():
     #logic for the specific user support history with org. support
     pass
 

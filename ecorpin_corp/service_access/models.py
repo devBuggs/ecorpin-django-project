@@ -1,7 +1,8 @@
 import datetime
 from django.db import models
-from django.contrib import auth
 from django.utils import timezone
+
+from django.contrib.auth.models import User
 
 # Create your models here.
 class TypeReq(models.Model):
@@ -23,42 +24,46 @@ class ContactRequest(models.Model):
     def __str__(self):
         return self.project_title
 
-
-'''
-class ServiceUser(auth.models.User, auth.models.PermissionsMixin):
-
-    def __str__():
-        return "@{}".format(self.username)
-
-# Project development phases model
-class DevelopmentPhase(models.Model):
-    name = models.CharField(max_length=100)
-
-    def __str__(self):
-        return self.name
-
-# service project model 
-class ServiceProject(models.Model):
-    username = models.ForeignKey(User, on_delete=models.CASCADE)
-    email = models.EmailField(blank=True)
-    mobile = models.CharField(max_length=15, blank=True)
-    service_id = models.CharField(max_length=50)
-    title = models.CharField(max_length=100)
-    description = models.CharField(max_length=500)
-    start_date = models.DateTimeField(default=timezone.now)
-    deadline = models.DateTimeField(blank=True)
-    technology = models.CharField(max_length=50)
-    framework = models.CharField(max_length=50)
-    platform = models.CharField(max_length=100)
-    development_phase = models.ForeignKey(DevelopmentPhase, on_delete=models.CASCADE)
-    progress = models.CharField(max_length=100)
-    status = models.CharField(max_length=100)
-    live_url = models.URLField(blank=True)
-    static_url = models.URLField(blank=True)
-    payment_status = models.CharField(max_length=100)
+# extending existing User model into ServiceUser for seperate active ecorpin service user 
+class ServiceUser(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    service_id = models.CharField(max_length=12, unique=True, blank=False)
     
     def __str__(self):
-        return self.service_id
+        return "{}".format(self.service_id)
 
-'''
+# class for default development phases (Initiating, Planning, Design, Development, Testing, Production)
+class DevelopmentStatus(models.Model):
+    phase_name = models.CharField(max_length=50)
 
+    def __str__(self):
+        return "{} Phase".format(self.phase_name)
+
+#class for default Status (Active or Inactive)
+class ServiceStatus(models.Model):
+    status_name = models.CharField(max_length=10, blank=False)
+
+    def __str__(self):
+        return self.status_name
+
+# class for user services
+class Service(models.Model):
+    service_id = models.ForeignKey(ServiceUser, on_delete=models.CASCADE)
+    email = models.EmailField()
+    contact = models.CharField(max_length=15, blank=True)
+    title = models.CharField(max_length=100, blank=False)
+    description = models.CharField(max_length=500, blank=True)
+    technology = models.CharField(max_length=50, blank=True)
+    framework = models.CharField(max_length=50, blank=True)
+    platform = models.CharField(max_length=50, blank=True)
+    live_url = models.URLField(blank=True)
+    payment_status = models.CharField(max_length=50, blank=True) # need focus
+    development_phase = models.OneToOneField(DevelopmentStatus, on_delete=models.SET_NULL, null=True)
+    status = models.OneToOneField(ServiceStatus, on_delete=models.SET_NULL, null=True)
+    start_date = models.DateField(default=timezone.now)
+    deadline = models.DateField(blank=True)
+    dedicatedTime = models.IntegerField()
+    notification = models.CharField(max_length=150, default=None, blank=True)
+
+    def __str__(self):
+        return "{}".format(self.service_id.service_id)
