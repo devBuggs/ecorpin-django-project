@@ -1,1 +1,13 @@
 {% extends 'service_access/base.html' %}
+
+{% block content %}
+    <h1>welcome to dashboard to service</h1>
+    {% if request.user.is_authenticated %}
+        <h2 class="w3-red w3-xxlarge">{{ user.username }}</h2>
+    {% endif %}
+
+    <form method='POST'>
+        {% csrf_token %}
+        <input type='submit' value="Team">
+    </form>
+{% endblock %}

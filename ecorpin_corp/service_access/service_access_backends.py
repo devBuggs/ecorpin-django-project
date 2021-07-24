@@ -5,8 +5,6 @@ from django.contrib.auth.models import User
 
 from service_access.models import ServiceUser
 
-
-
 class ServiceAccessBackend(BaseBackend):
     """
     Authenticate against the settings ADMIN_LOGIN and ADMIN_PASSWORD.

@@ -7,7 +7,7 @@ from . import views
 
 app_name = 'service_access'
 urlpatterns = [
-    path('service_access/', views.ServiceLoginView.as_view(), name='service_access'),
     path('contact_request/', views.contact_request, name='contact_request'),
-    path('service_login/', views.ServiceLoginView.as_view(), name="login"),
+    path('service_login/', views.login_view, name="login"),
+    path('dashboard/', views.ServiceDashboard.as_view(), name="dashboard"),
 ]

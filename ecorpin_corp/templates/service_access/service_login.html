@@ -13,11 +13,11 @@
         </div>
 
         <div class="w3-container w3-auto">
-            <form action="#" method="GET">
+            <form action="{% url 'service_access:login' %}" method="POST">
                 <h2 class="w3-center w3-xxlarge w3-auto">Login with Service ID</h2>
                 <!-- client account login pannel -->
                 {% csrf_token %}
-                <input type="text" class="w3-border w3-hover-border-black w3-white" name="username" placeholder="enter your username or service id" autofocus autocapitalize="none" autocomplete="username" maxlength="150" required id="id_username">
+                <input type="text" class="w3-border w3-hover-border-black w3-white" name="serviceId" placeholder="enter your username or service id" autofocus autocapitalize="none" autocomplete="username" maxlength="150" required id="id_username">
                 <input type="password" class="w3-border w3-hover-border-black w3-white" name="password" placeholder="enter your password" autocomplete="current-password" required id="id_password">
                 <button class="button button3" type="submit">Login</button>
             </form>
