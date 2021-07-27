@@ -47,6 +47,7 @@ def login_view(request):
             user = authenticate(request, username=username, password=pwd)
             if user is not None:
                 login(request, user)
+                print("Logging in user")
                 return redirect('service_access:dashboard')
             #login(request, username=username, password=pwd)
             return HttpResponse("Something went wrong in our server! #ecorpians ")
