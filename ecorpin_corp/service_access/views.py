@@ -44,9 +44,9 @@ def login_view(request):
             print("-------------------> ", service_user_obj)
             print("-------------------> ", service_user_obj[0].user.username)
             username = service_user_obj[0].user.username
-            user = authenticate(request, username=username, password=pwd)
+            user = authenticate(request, username=username, password=pwd) # user authentication
             if user is not None:
-                login(request, user)
+                login(request, user)       # login user into system
                 print("Logging in user")
                 return redirect('service_access:dashboard')
             #login(request, username=username, password=pwd)
