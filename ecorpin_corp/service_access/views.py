@@ -67,6 +67,7 @@ class ServiceDashboard(View):
 
 class ServiceUpdateView():
     # logic for the service/profile/information update request
+    # check latest customer message
     pass
 
 class ServiceSupportView():
