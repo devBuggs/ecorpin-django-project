@@ -5,330 +5,57 @@
         <title>{% block title %}{% endblock %}</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="{% static 'css/custom-ecorp.css' %}" type="text/css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{% static 'css/w3.css' %}">
         {% block style %}
-        <style>
-            body,
-            h1 {
-                font-family: "Montserrat", sans-serif
-            }
-
-
-            img {
-                margin-bottom: -7px
-            }
-
-            .w3-row-padding img {
-                margin-bottom: 12px
-            }
-
-
-            * {
-                box-sizing: border-box;
-            }
-
-
-            .button {
-                background-color: #4CAF50;
-                /* Green */
-                border: none;
-                color: white;
-                padding: 16px 32px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                font-size: 16px;
-                margin: 4px 2px;
-                transition-duration: 0.4s;
-                cursor: pointer;
-                width: 100%;
-            }
-
-            .button3 {
-                background-color: white;
-                color: black;
-                border: 2px solid #4b4a55;
-            }
-
-            .button3:hover {
-                background-color: #4b4a55;
-                /*   #f44336 red */
-                color: white;
-            }
-
-            .button4 {
-                background-color: white;
-                color: black;
-                border: 2px solid #e7e7e7;
-            }
-
-            .button4:hover {
-                background-color: #e7e7e7;
-            }
-
-            /* style the container */
-            .container {
-                position: relative;
-                border-radius: 5px;
-                background-color: #ffffff;
-                padding: 20px 0 30px 0;
-            }
-
-            /* style inputs and link buttons */
-            input,
-            .btn {
-                width: 100%;
-                padding: 12px;
-                border: none;
-                border-radius: 4px;
-                margin: 5px 0;
-                opacity: 0.85;
-                display: inline-block;
-                font-size: 17px;
-                line-height: 20px;
-                text-decoration: none;
-                /* remove underline from anchors */
-            }
-
-            input:hover,
-            .btn:hover {
-                opacity: 1;
-            }
-
-            /* add appropriate colors to fb, twitter and google buttons */
-            .fb {
-                background-color: #84878f;
-                color: white;
-            }
-
-            .twitter {
-                background-color: #55ACEE;
-                color: white;
-            }
-
-            .google {
-                background-color: #dd4b39;
-                color: white;
-            }
-
-            /* style the submit button */
-            input[type=submit] {
-                background-color: #4CAF50;
-                color: white;
-                cursor: pointer;
-            }
-
-            input[type=submit]:hover {
-                background-color: #45a049;
-            }
-
-            /* Two-column layout */
-            .col {
-                float: left;
-                width: 50%;
-                margin: auto;
-                padding: 0 50px;
-                margin-top: 6px;
-            }
-
-            /* Clear floats after the columns */
-            .row:after {
-                content: "";
-                display: table;
-                clear: both;
-            }
-
-            /* vertical line */
-            .vl {
-                position: absolute;
-                left: 50%;
-                transform: translate(-50%);
-                border: 2px solid #ddd;
-                height: 175px;
-            }
-
-            /* text inside the vertical line */
-            .vl-innertext {
-                position: absolute;
-                top: 50%;
-                transform: translate(-50%, -50%);
-                background-color: #f1f1f1;
-                border: 1px solid #ccc;
-                border-radius: 50%;
-                padding: 8px 10px;
-            }
-
-            /* hide some text on medium and large screens */
-            .hide-md-lg {
-                display: none;
-            }
-
-            /* bottom container */
-            .bottom-container {
-                text-align: center;
-                background-color: #666;
-                border-radius: 0px 0px 4px 4px;
-            }
-
-            /* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
-            @media screen and (max-width: 650px) {
-                .col {
-                    width: 100%;
-                    margin-top: 0;
-                }
-
-                /* hide the vertical line */
-                .vl {
-                    display: none;
-                }
-
-                /* show the hidden text on small screens */
-                .hide-md-lg {
-                    display: block;
-                    text-align: center;
-                }
-            }
-
-            /* The snackbar - position it at the bottom and in the middle of the screen */
-            #snackbar {
-                visibility: hidden;
-                /* Hidden by default. Visible on click */
-                min-width: 250px;
-                /* Set a default minimum width */
-                margin-left: -125px;
-                /* Divide value of min-width by 2 */
-                background-color: #333;
-                /* Black background color */
-                color: #fff;
-                /* White text color */
-                text-align: center;
-                /* Centered text */
-                border-radius: 2px;
-                /* Rounded borders */
-                padding: 16px;
-                /* Padding */
-                position: fixed;
-                /* Sit on top of the screen */
-                z-index: 1;
-                /* Add a z-index if needed */
-                left: 50%;
-                /* Center the snackbar */
-                bottom: 30px;
-                /* 30px from the bottom */
-            }
-
-            /* Show the snackbar when clicking on a button (class added with JavaScript) */
-            #snackbar.show {
-                visibility: visible;
-                /* Show the snackbar */
-                /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
-        However, delay the fade out process for 2.5 seconds */
-                -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-                animation: fadein 0.5s, fadeout 0.5s 2.5s;
-            }
-
-            /* Animations to fade the snackbar in and out */
-            @-webkit-keyframes fadein {
-                from {
-                    bottom: 0;
-                    opacity: 0;
-                }
-
-                to {
-                    bottom: 30px;
-                    opacity: 1;
-                }
-            }
-
-            @keyframes fadein {
-                from {
-                    bottom: 0;
-                    opacity: 0;
-                }
-
-                to {
-                    bottom: 30px;
-                    opacity: 1;
-                }
-            }
-
-            @-webkit-keyframes fadeout {
-                from {
-                    bottom: 30px;
-                    opacity: 1;
-                }
-
-                to {
-                    bottom: 0;
-                    opacity: 0;
-                }
-            }
-
-            @keyframes fadeout {
-                from {
-                    bottom: 30px;
-                    opacity: 1;
-                }
-
-                to {
-                    bottom: 0;
-                    opacity: 0;
-                }
-            }
-        </style>
+            <style>
+                body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+                .w3-quarter img{margin-bottom: -6px; cursor: pointer}
+                .w3-quarter img:hover{opacity: 0.6; transition: 0.3s}
+                .myListSlide {display:none;}
+            </style>
         {% endblock %}
     </head>
 
-    <body onload="mainLogin()">
-        <!-- Sidebar -->
-        <nav class="w3-sidebar w3-black w3-animate-top w3-xxlarge" style="display:none;padding-top:150px" id="mySidebar">
-            <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-black w3-xxlarge w3-padding w3-display-topright" style="padding:6px 24px">
-                <i class="fa fa-remove"></i>
-            </a>
-            <div class="w3-bar-block w3-center">
-                <a href="{% url 'service_access:contact_request' %}" class="w3-bar-item w3-button w3-text-grey w3-hover-black">New Project</a>
-                <a href="{% url 'service_access:login' %}" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Service Access</a>
-                <a href="{% url 'ecorpin:maintenance' %}" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Ecorpin Lab.</a>
-                <a href="{% url 'ecorpin:index' %}" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Ecorpin Corp.</a>
-                <a href="{% url 'ecorpin:maintenance' %}" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Virtual Reality</a>
-                <a href="{% url 'ecorpin:maintenance' %}" class="w3-bar-item w3-button w3-text-grey w3-hover-black">Augmented Reality</a>
-            </div>
+    <body class="w3-light-grey">
+        <!-- Sidebar/menu -->
+        <nav class="w3-sidebar w3-bar-block w3-black w3-animate-right w3-top w3-text-light-grey w3-large" style="z-index:3;width:250px;font-weight:bold;display:none;right:0;" id="mySidebar">
+            <a href="javascript:void()" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-32">CLOSE</a> 
+            <a href="https://www.w3schools.com/w3css/tryw3css_templates_portfolio3.htm#" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">PORTFOLIO</a> 
+            <a href="https://www.w3schools.com/w3css/tryw3css_templates_portfolio3.htm#about" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">ABOUT ME</a> 
+            <a href="https://www.w3schools.com/w3css/tryw3css_templates_portfolio3.htm#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">CONTACT</a>
+            {% if request.user.is_authenticated %}
+                <a href={% url 'service_access:logout' %} class="w3-bar-item w3-button w3-center w3-padding-16">Logout</a>
+            {% endif %}
         </nav>
 
+        <!-- Top menu on small screens -->
+        <header class="w3-container w3-top w3-white w3-xlarge w3-padding-16">
+            <span class="w3-left w3-padding w3-text-teal">Service Access</span>
+            <a href="javascript:void(0)" class="w3-right w3-button w3-white w3-text-teal" onclick="w3_open()">☰</a>
+        </header>
+
+        <!-- Overlay effect when opening sidebar on small screens -->
+        <div class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+
+        <!-- !PAGE CONTENT! -->
+        <div class="w3-main w3-content" style="max-width:1600px;margin-top:83px">
         {% block content %}
 
-        {% endblock %}
-
-        <!-- Footer -->
-        <footer class="w3-container w3-padding-32 w3-light-grey w3-center w3-opacity w3-xlarge">
-            <h3>Ecorpin Corporation </h3>
-            <p class="w3-medium">Engineered by <a href="https://devbuggs.pythonanywhere.com/" target="_blank" class="w3-hover-text-green">Bhagwan Singh</a>
-            </p>
-        </footer>
+        {% endblock %} 
+        </div>
 
         <script>
-            // Toggle grid padding
-            function myFunction() {
-                var x = document.getElementById("myGrid");
-                if (x.className === "w3-row") {
-                    x.className = "w3-row-padding";
-                } else {
-                    x.className = x.className.replace("w3-row-padding", "w3-row");
-                }
-            }
-
-            // Open and close sidebar
+            // Script to open and close sidebar
             function w3_open() {
-                document.getElementById("mySidebar").style.width = "100%";
-                document.getElementById("mySidebar").style.display = "block";
+              document.getElementById("mySidebar").style.display = "block";
+              document.getElementById("myOverlay").style.display = "block";
             }
-
+            
             function w3_close() {
-                document.getElementById("mySidebar").style.display = "none";
+              document.getElementById("mySidebar").style.display = "none";
+              document.getElementById("myOverlay").style.display = "none";
             }
         </script>
-        <script src="{% static 'js/ecorpinx.js' %}"></script>
     </body>
 </html>

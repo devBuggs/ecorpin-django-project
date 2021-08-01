@@ -3,8 +3,10 @@ from django.views import View
 from django.http import HttpResponse 
 
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import ContactRequest, ServiceUser
+from .models import ContactRequest, ServiceUser, Service
 from .forms import ContactRequestForm
 
 # Create your views here.
@@ -25,9 +27,10 @@ def contact_request(request):
         context = { 'form': form, }
         return render(request, 'service_access/contact_request.html', context)
 
+@login_required(login_url='service_access:login')
 def service_logout(request):
     logout(request)
-    return redirect(service_login_view)
+    return redirect("service_access:contact_request")
 
 def login_view(request):
     if request.method == 'POST':
@@ -44,22 +47,22 @@ def login_view(request):
             print("-------------------> ", service_user_obj)
             print("-------------------> ", service_user_obj[0].user.username)
             username = service_user_obj[0].user.username
-            user = authenticate(request, username=username, password=pwd) # user authentication
+            user = authenticate(request, username=username, password=pwd)
             if user is not None:
-                login(request, user)       # login user into system
+                login(request, user)
                 print("Logging in user")
                 return redirect('service_access:dashboard')
-            #login(request, username=username, password=pwd)
             return HttpResponse("Something went wrong in our server! #ecorpians ")
-            #return redirect('service_access:dashboard')
         else:
             print("-------------------> No user found..")
     return render(request, 'service_access/service_login.html')
 
-class ServiceDashboard(View):
+class ServiceDashboard(LoginRequiredMixin, View):
     template_name='service_access/dashboard.html'
     def get(self, request):
         # <view logic>
+        print("-------------------------------------------------- getting things : dashboard ")
+        projects = Service.objects.get(service_id = ).bulk()
         return render(request, 'service_access/dashboard.html')
     def post(self, request):
         #<view logic>
@@ -67,7 +70,6 @@ class ServiceDashboard(View):
 
 class ServiceUpdateView():
     # logic for the service/profile/information update request
-    # check latest customer message
     pass
 
 class ServiceSupportView():

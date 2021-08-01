@@ -1,13 +1,50 @@
+<!DOCTYPE html>
 {% extends 'service_access/base.html' %}
+{% block title %} Dashboard | Ecorpin {% endblock %}
 
 {% block content %}
-    <h1>welcome to dashboard to service</h1>
     {% if request.user.is_authenticated %}
-        <h2 class="w3-red w3-xxlarge">{{ user.username }}</h2>
+        <h1 class="w3-sand w3-padding-64">Welcome to service dashboard <i class="w3-text-red w3-xlarge">{{ user.username }}</i></h1>
     {% endif %}
 
     <form method='POST'>
         {% csrf_token %}
-        <input type='submit' value="Team">
+        <input type='submit' class="w3-btn w3-block w3-text-teal w3-border" value="Team">
     </form>
+    <hr/>
+    <a href={% url 'service_access:logout' %} class="w3-button w3-large w3-text-teal">Logout</a>
+
+    <div class="w3-content" style="max-width:auto">
+    {% for obj in projects %}
+        <div class="myListSlide w3-container w3-red">
+            <h1><b>{{ obj.title }}</b></h1>
+            {{ obj.status }} - {{ obj.development_phase }} - {{ obj.payment_status }}
+            Notification- {{ obj.notification }}
+            <h1><i>We plan to sell trips to the moon in the 2020s</i></h1>
+        </div>
+        <div class="myListSlide w3-container w3-green">
+            <h1><b>Did You Know?</b></h1>
+            <h1><i>We plan to sell trips to the moon in the 2020s</i></h1>
+        </div>
+    {% endfor %}
+    </div>
+
+
+
+    <script>
+        var slideIndex = 0;
+        carousel();
+
+        function carousel() {
+            var i;
+            var x = document.getElementsByClassName("myListSlide");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none"; 
+            }
+            slideIndex++;
+            if (slideIndex > x.length) {slideIndex = 1} 
+            x[slideIndex-1].style.display = "block"; 
+            setTimeout(carousel, 2000); 
+        }
+    </script>
 {% endblock %}

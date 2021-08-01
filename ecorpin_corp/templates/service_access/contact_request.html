@@ -1,288 +1,367 @@
-{% extends 'service_access/base.html' %}
-{% block title %} Contact Request | Ecorpin {% endblock %}
-{% block style %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Request | Ecorpin</title>
+    <link rel="stylesheet" href="{% static 'css/w3.css' %}" />
     <style>
-        body,
-        h1 {
-            font-family: "Montserrat", sans-serif
-        }
+      body,
+      h1 {
+        font-family: "Montserrat", sans-serif;
+      }
 
-        label {
-            display: none;
-        }
+      label {
+        display: none;
+      }
 
-        img {
-            margin-bottom: -7px
-        }
+      img {
+        margin-bottom: -7px;
+      }
 
-        .w3-row-padding img {
-            margin-bottom: 12px
-        }
+      .w3-row-padding img {
+        margin-bottom: 12px;
+      }
 
-        ::selection {
-            background: #bafff7;
-        }
+      ::selection {
+        background: #bafff7;
+      }
 
-        * {
-            box-sizing: border-box;
-        }
+      * {
+        box-sizing: border-box;
+      }
 
-        .button {
-            /* Green */
-            border: none;
-            color: white;
-            padding: 16px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            transition-duration: 0.4s;
-            cursor: pointer;
-            width: 100%;
-        }
+      .button {
+        /* Green */
+        border: none;
+        color: white;
+        padding: 16px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        transition-duration: 0.4s;
+        cursor: pointer;
+        width: 100%;
+      }
 
-        .button3 {
-            background-color: white;
-            color: black;
-            border: 2px solid #4b4a55;
-        }
+      .button3 {
+        background-color: white;
+        color: black;
+        border: 2px solid #4b4a55;
+      }
 
-        .button3:hover {
-            background-color: #4b4a55;
-            /*   #f44336 red */
-            color: white;
-        }
+      .button3:hover {
+        background-color: #4b4a55;
+        /*   #f44336 red */
+        color: white;
+      }
 
-        .button4 {
-            background-color: white;
-            color: black;
-            border: 2px solid #e7e7e7;
-        }
+      .button4 {
+        background-color: white;
+        color: black;
+        border: 2px solid #e7e7e7;
+      }
 
-        .button4:hover {
-            background-color: #e7e7e7;
-        }
+      .button4:hover {
+        background-color: #e7e7e7;
+      }
 
-        /* style the container */
-        .container {
-            position: relative;
-            border-radius: 5px;
-            background-color: #ffffff;
-            padding: 20px 0 30px 0;
-        }
+      /* style the container */
+      .container {
+        position: relative;
+        border-radius: 5px;
+        background-color: #ffffff;
+        padding: 20px 0 30px 0;
+      }
 
-        /* style inputs and link buttons */
-        input,
-        .btn {
-            width: 100%;
-            padding: 12px;
-            border: none;
-            border-radius: 4px;
-            margin: 5px 0;
-            opacity: 0.85;
-            display: inline-block;
-            font-size: 14px;
-            line-height: 20px;
-            text-decoration: none;
-            background-color: #4b4a55a8;
-            /* remove underline from anchors */
-        }
+      /* style inputs and link buttons */
+      input,
+      .btn {
+        width: 100%;
+        padding: 12px;
+        border: none;
+        border-radius: 4px;
+        margin: 5px 0;
+        opacity: 0.85;
+        display: inline-block;
+        font-size: 14px;
+        line-height: 20px;
+        text-decoration: none;
+        background-color: #4b4a55a8;
+        /* remove underline from anchors */
+      }
 
-        textarea {
-            padding: 12px;
-            border: none;
-            border-radius: 4px;
-            margin: 5px 0;
-            opacity: 0.85;
-            display: inline-block;
-            font-size: 17px;
-            line-height: 20px;
-            text-decoration: none;
-            background-color: #4b4a55a8;
-        }
+      textarea {
+        padding: 12px;
+        border: none;
+        border-radius: 4px;
+        margin: 5px 0;
+        opacity: 0.85;
+        display: inline-block;
+        font-size: 17px;
+        line-height: 20px;
+        text-decoration: none;
+        background-color: #4b4a55a8;
+      }
 
+      input::placeholder {
+        color: black;
+        opacity: 1;
+      }
 
-        input::placeholder {
-            color: black;
-            opacity: 1;
-        }
+      input:-ms-input-placeholder {
+        color: black;
+      }
 
-        input:-ms-input-placeholder {
-            color: black;
-        }
+      textarea:-ms-input-placeholder {
+        color: black;
+      }
 
-        textarea:-ms-input-placeholder {
-            color: black;
-        }
+      textarea::placeholder {
+        color: black;
+        opacity: 1;
+      }
 
-        textarea::placeholder {
-            color: black;
-            opacity: 1;
-        }
+      input:hover,
+      .btn:hover {
+        opacity: 1;
+      }
 
-        input:hover,
-        .btn:hover {
-            opacity: 1;
-        }
+      /* style the submit button */
+      input[type="submit"] {
+        background-color: #4caf50;
+        color: white;
+        cursor: pointer;
+      }
 
-        /* style the submit button */
-        input[type=submit] {
-            background-color: #4CAF50;
-            color: white;
-            cursor: pointer;
-        }
+      input[type="submit"]:hover {
+        background-color: #45a049;
+      }
 
-        input[type=submit]:hover {
-            background-color: #45a049;
-        }
+      /* Two-column layout */
+      .col {
+        float: left;
+        width: 50%;
+        margin: auto;
+        padding: 0 50px;
+        margin-top: 6px;
+      }
 
-        /* Two-column layout */
+      /* Clear floats after the columns */
+      .row:after {
+        content: "";
+        display: table;
+        clear: both;
+      }
+
+      /* vertical line */
+      .vl {
+        position: absolute;
+        left: 50%;
+        transform: translate(-50%);
+        border: 2px solid #ddd;
+        height: 175px;
+      }
+
+      /* text inside the vertical line */
+      .vl-innertext {
+        position: absolute;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        background-color: #f1f1f1;
+        border: 1px solid #ccc;
+        border-radius: 50%;
+        padding: 8px 10px;
+      }
+
+      /* hide some text on medium and large screens */
+      .hide-md-lg {
+        display: none;
+      }
+
+      /* bottom container */
+      .bottom-container {
+        text-align: center;
+        background-color: #666;
+        border-radius: 0px 0px 4px 4px;
+      }
+
+      /* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
+      @media screen and (max-width: 650px) {
         .col {
-            float: left;
-            width: 50%;
-            margin: auto;
-            padding: 0 50px;
-            margin-top: 6px;
+          width: 100%;
+          margin-top: 0;
         }
 
-        /* Clear floats after the columns */
-        .row:after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-
-        /* vertical line */
+        /* hide the vertical line */
         .vl {
-            position: absolute;
-            left: 50%;
-            transform: translate(-50%);
-            border: 2px solid #ddd;
-            height: 175px;
+          display: none;
         }
 
-        /* text inside the vertical line */
-        .vl-innertext {
-            position: absolute;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            background-color: #f1f1f1;
-            border: 1px solid #ccc;
-            border-radius: 50%;
-            padding: 8px 10px;
-        }
-
-        /* hide some text on medium and large screens */
+        /* show the hidden text on small screens */
         .hide-md-lg {
-            display: none;
+          display: block;
+          text-align: center;
         }
-
-        /* bottom container */
-        .bottom-container {
-            text-align: center;
-            background-color: #666;
-            border-radius: 0px 0px 4px 4px;
-        }
-
-        /* Responsive layout - when the screen is less than 650px wide, make the two columns stack on top of each other instead of next to each other */
-        @media screen and (max-width: 650px) {
-            .col {
-                width: 100%;
-                margin-top: 0;
-            }
-
-            /* hide the vertical line */
-            .vl {
-                display: none;
-            }
-
-            /* show the hidden text on small screens */
-            .hide-md-lg {
-                display: block;
-                text-align: center;
-            }
-        }
+      }
     </style>
-{% endblock %}
-
-{% block content %}
+  </head>
+  <body>
     <div>
-        <!-- Header -->
-        <div class="w3-opacity">
-            <span class="w3-button w3-xxlarge w3-white w3-right" onclick="w3_open()"><i class="fa fa-bars"></i></span>
-            <div class="w3-clear"></div>
-            <header class="w3-center w3-margin-bottom">
-                <h1 class="w3-wide"><b>Ecorpin Service Access</b></h1>
-                <p><b>tell us a bit about your project or idea, so we can start a conversation..</b></p>
-            </header>
+      <!-- Header -->
+      <div class="w3-opacity">
+        <span class="w3-button w3-xxlarge w3-white w3-right" onclick="w3_open()">
+            <i class="fa fa-bars"></i>
+        </span>
+        <div class="w3-clear"></div>
+        <header class="w3-center w3-margin-bottom">
+          <h1 class="w3-wide"><b>Ecorpin Service Access</b></h1>
+          <p>
+            <b>tell us a bit about your project or idea, so we can start a conversation..</b>
+          </p>
+        </header>
+      </div>
+
+      <div>
+        {% if data %}
+        <div class="w3-sand">
+          <header class="w3-center w3-margin-bottom w3-panel w3-padding-48">
+            <p class="w3-wide w3-text-red">{{ data }}</p>
+            <hr />
+            <h3 class="w3-text-teal">We value privacy and confidentiality.</h3>
+            <h1 class="w3-wide w3-opacity">
+              <b>Welcome to Ecorpin Corporation</b>
+            </h1>
+          </header>
         </div>
-
-        <div>
-            {% if data %}
-                <div class="w3-sand">
-                    <header class="w3-center w3-margin-bottom w3-panel w3-padding-48">
-                        <p class="w3-wide w3-text-red">{{ data }}</p>
-                        <hr>
-                        <h3 class="w3-text-teal">We value privacy and confidentiality.</h3>
-                        <h1 class="w3-wide w3-opacity"><b>Welcome to Ecorpin Corporation</b></h1>
-                    </header>
-                </div>
-            {% else %}
-                <div class="w3-row w3-border">
-                    <div class="w3-container w3-half">
-                        <div class="w3-padding-32 w3-center w3-light-grey w3-round">
-                            <p class="w3-text-gray w3-xlarge w3-serif">Every business is different and has its own set of requirements.
-                                <br> Keep your growing business ahead.
-                            </p>
-                            <p><strong class="w3-large w3-text-teal">We are comitted to empowering you by providing the latest technology solutions & services from us.</strong></p>
-                        </div>
-                        <div class="w3-hide-small w3-serif w3-xxlarge w3-wide">
-                            <a href="{% url 'works:projects' %}" class="w3-pale-red w3-border-bottom w3-text-red w3-btn w3-leftbar w3-border-red w3-block w3-padding-32 w3-round">our portfolio</a>
-                            <a href="{% url 'ecorpin:service' %}" class="w3-pale-green w3-border-bottom w3-text-green w3-btn w3-rightbar w3-border-green w3-block w3-padding-32 w3-round">our services</a>
-                            <a href="{% url 'ecorpin:team' %}" class="w3-light-gray w3-border-bottom w3-text-black w3-btn w3-leftbar w3-border-black w3-block w3-padding-32 w3-round">our team <u>#ecorpians</u></a>
-                            
-                        </div>
-                    </div>
-                    <div class="w3-container w3-half">
-                        <form action="{% url 'service_access:contact_request' %}" method="POST" autocomplete="off">
-                            {% csrf_token %}
-                            {{ form.as_p }}
-                            <button class="button button3" type="submit">Let's Start Together</button>
-                        </form>
-                    </div>
-                </div>
-            {% endif %}
+        {% else %}
+        <div class="w3-row w3-border">
+          <div class="w3-container w3-half">
+            <div class="w3-padding-32 w3-center w3-light-grey w3-round">
+              <p class="w3-text-gray w3-xlarge w3-serif">
+                Every business is different and has its own set of requirements.
+                <br />
+                Keep your growing business ahead.
+              </p>
+              <p>
+                <strong class="w3-large w3-text-teal"
+                  >We are comitted to empowering you by providing the latest
+                  technology solutions & services from us.</strong
+                >
+              </p>
+            </div>
+            <div class="w3-hide-small w3-serif w3-xxlarge w3-wide">
+              <a
+                href="{% url 'works:projects' %}"
+                class="
+                  w3-pale-red
+                  w3-border-bottom
+                  w3-text-red
+                  w3-btn
+                  w3-leftbar
+                  w3-border-red
+                  w3-block
+                  w3-padding-32
+                  w3-round
+                "
+                >our portfolio</a
+              >
+              <a
+                href="{% url 'ecorpin:service' %}"
+                class="
+                  w3-pale-green
+                  w3-border-bottom
+                  w3-text-green
+                  w3-btn
+                  w3-rightbar
+                  w3-border-green
+                  w3-block
+                  w3-padding-32
+                  w3-round
+                "
+                >our services</a
+              >
+              <a
+                href="{% url 'ecorpin:team' %}"
+                class="
+                  w3-light-gray
+                  w3-border-bottom
+                  w3-text-black
+                  w3-btn
+                  w3-leftbar
+                  w3-border-black
+                  w3-block
+                  w3-padding-32
+                  w3-round
+                "
+                >our team <u>#ecorpians</u></a
+              >
+            </div>
+          </div>
+          <div class="w3-container w3-half">
+            <form
+              action="{% url 'service_access:contact_request' %}"
+              method="POST"
+              autocomplete="off"
+            >
+              {% csrf_token %} {{ form.as_p }}
+              <button class="button button3" type="submit">
+                Let's Start Together
+              </button>
+            </form>
+          </div>
         </div>
+        {% endif %}
+      </div>
 
-        <script>
-            var ContactName = document.getElementById("id_contact_name");
-            var ProjectTitle = document.getElementById("id_project_title");
-            var ContactProjectIdea = document.getElementById("id_project_idea");
-            var ContactDateTime = document.getElementById("id_contact_date");
-            var ContactMobileNumber = document.getElementById("id_contact_mobile");
-            var ContactEmailAddress = document.getElementById("id_contact_email");
-            var ContactType = document.getElementById("id_contact_type");
+      <script>
+        var ContactName = document.getElementById("id_contact_name");
+        var ProjectTitle = document.getElementById("id_project_title");
+        var ContactProjectIdea = document.getElementById("id_project_idea");
+        var ContactDateTime = document.getElementById("id_contact_date");
+        var ContactMobileNumber = document.getElementById("id_contact_mobile");
+        var ContactEmailAddress = document.getElementById("id_contact_email");
+        var ContactType = document.getElementById("id_contact_type");
 
-            ContactName.setAttribute("placeholder", "enter your name");
+        ContactName.setAttribute("placeholder", "enter your name");
 
-            ProjectTitle.setAttribute("placeholder", "enter project title or technology");
+        ProjectTitle.setAttribute(
+          "placeholder",
+          "enter project title or technology"
+        );
 
-            ContactProjectIdea.setAttribute("placeholder", "Tell us a bit about your project or idea, so we can start a conversation.");
-            ContactProjectIdea.classList.add("w3-input");
+        ContactProjectIdea.setAttribute(
+          "placeholder",
+          "Tell us a bit about your project or idea, so we can start a conversation."
+        );
+        ContactProjectIdea.classList.add("w3-input");
 
-            //ContactDateTime.classList.add("w3-half");
-            ContactDateTime.setAttribute("type", "datetime-local");
+        //ContactDateTime.classList.add("w3-half");
+        ContactDateTime.setAttribute("type", "datetime-local");
 
-            //ContactMobileNumber.classList.add("w3-half");
-            ContactMobileNumber.setAttribute("type", "tel");
-            ContactMobileNumber.setAttribute("pattern", "[0-9]{10}");
-            ContactMobileNumber.setAttribute("placeholder", "e.g. 999999XXXX");
+        //ContactMobileNumber.classList.add("w3-half");
+        ContactMobileNumber.setAttribute("type", "tel");
+        ContactMobileNumber.setAttribute("pattern", "[0-9]{10}");
+        ContactMobileNumber.setAttribute("placeholder", "e.g. 999999XXXX");
 
-            ContactEmailAddress.setAttribute("placeholder", "enter your email");
+        ContactEmailAddress.setAttribute("placeholder", "enter your email");
 
-            ContactType.classList.add("w3-select", "w3-light-gray");
+        ContactType.classList.add("w3-select", "w3-light-gray");
 
-        </script>
+        // Open and close sidebar
+        function w3_open() {
+            document.getElementById("mySidebar").style.width = "100%";
+            document.getElementById("mySidebar").style.display = "block";
+        }
+
+        function w3_close() {
+            document.getElementById("mySidebar").style.display = "none";
+        }
+      </script>
     </div>
-{% endblock %}
+  </body>
+</html>
