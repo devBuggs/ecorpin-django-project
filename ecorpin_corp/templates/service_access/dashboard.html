@@ -2,34 +2,123 @@
 {% extends 'service_access/base.html' %}
 {% block title %} Dashboard | Ecorpin {% endblock %}
 
+{% block style %}
+    <style>
+        body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+        .w3-quarter img{margin-bottom: -6px; cursor: pointer}
+        .w3-quarter img:hover{opacity: 0.6; transition: 0.3s}
+        .myListSlide {display:none;}
+        .w3-animate-fading{animation-duration: 2000ms;}
+    </style>
+{% endblock %}
+
 {% block content %}
     {% if request.user.is_authenticated %}
-        <h1 class="w3-sand w3-padding-64">Welcome to service dashboard <i class="w3-text-red w3-xlarge">{{ user.username }}</i></h1>
+        <p class="w3-xxxlarge w3-hide-small w3-text-teal w3-serif w3-center w3-padding-32 w3-sand">have a look! We're building your dream...</p>
     {% endif %}
 
-    <form method='POST'>
-        {% csrf_token %}
-        <input type='submit' class="w3-btn w3-block w3-text-teal w3-border" value="Team">
-    </form>
-    <hr/>
-    <a href={% url 'service_access:logout' %} class="w3-button w3-large w3-text-teal">Logout</a>
-
-    <div class="w3-content" style="max-width:auto">
-    {% for obj in projects %}
-        <div class="myListSlide w3-container w3-red">
-            <h1><b>{{ obj.title }}</b></h1>
-            {{ obj.status }} - {{ obj.development_phase }} - {{ obj.payment_status }}
-            Notification- {{ obj.notification }}
-            <h1><i>We plan to sell trips to the moon in the 2020s</i></h1>
+    <div class="row">
+        <div class="w3-content w3-twothird" style="max-width:auto">
+        {% for service in service_list %}
+            <!-- w3-animate-right w3-animate-fading -->
+            <div class="myListSlide w3-container w3-text-white w3-padding-large">
+                <h1 class="w3-text-sand w3-serif">{{ service.title }}</h1>
+                <h4 class="w3-text-sand w3-serif">{{ service.description }}</h4>
+                <table class="w3-table w3-bordered w3-responsive w3-half">
+                    <tr>
+                        <td>Service Id</td>
+                        <td><strong>{{ service.service_id  }}</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Contact</td>
+                        <td><strong>{{ service.contact }}</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td><strong>{{ service.email }}</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Platform</td>
+                        <td><strong>{{ service.platform }}</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Technology</td>
+                        <td><strong>{{ service.technology }}</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Framework</td>
+                        <td><strong>{{ service.framework }}</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Status</td>
+                        <td><strong>{{ service.status }}</strong></td>
+                    </tr>
+                </table>
+                <table class="w3-table w3-bordered w3-mobile w3-padding-large w3-align-left w3-half">
+                    <tr>
+                        <td>Development</td>
+                        <td><strong>{{ service.development_phase }}</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Start Date</td>
+                        <td><strong>{{ service.start_date }}</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Deadline</td>
+                        <td><input type="datetime" name="deadline" value="{{ service.deadline }}"></td>
+                    </tr>
+                    <tr>
+                        <td>Time (in Hrs.)</td>
+                        <td><strong>{{ service.dedicatedTime }}</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Notification</td>
+                        <td><strong>{{ service.notification }}</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Payment Status</td>
+                        <td><strong>{{ service.payment_status }}</strong></td>
+                    </tr>
+                </table>
+            </div>
+        {% endfor %}
         </div>
-        <div class="myListSlide w3-container w3-green">
-            <h1><b>Did You Know?</b></h1>
-            <h1><i>We plan to sell trips to the moon in the 2020s</i></h1>
+        <div class="w3-third w3-pale-green w3-round w3-padding-large">
+            <div class="w3-text-teal w3-serif w3-center w3-xxlarge w3-border-bottom w3-border-teal">Notification</div>
+            <ul class="w3-ul">
+                {% for service in service_list %}
+                    <li class="w3-text-teal"><span class="close w3-cursor w3-button w3-hover-red w3-round">&times;</span> {{ service.title }} - {{ service.notification }}</li>
+                {% endfor %}
+            </ul>
+            <div class="w3-text-red w3-serif w3-center w3-xxlarge w3-border-bottom w3-border-teal">Live Status</div>
+            <ul class="w3-ul">
+                {% for service in service_list %}
+                    <li class="w3-text-teal"><span class="close w3-cursor w3-button w3-hover-red w3-round">&times;</span> {{ service.title }} <u class="w3-text-red">{{ service.status }}</u></li>
+                {% endfor %}
+            </ul>
+            <hr>
         </div>
-    {% endfor %}
     </div>
 
-
+    <div class="w3-row">    
+        <form class="w3-half" method='POST'>
+            {% csrf_token %}
+            <input type="text" class="w3-input w3-half w3-border w3-border-teal" name="search_index" placeholder="search...">
+            <input type='submit' class="w3-btn w3-text-teal w3-border w3-border-teal w3-border" value="Submit">
+        </form>
+        <div class="w3-half w3-teal w3-right">
+            <ol class="w3-ol w3-right">
+                <a class="w3-btn w3-border-bottom w3-border-black w3-hover-border-red w3-serif " href="{{ service.live_url }}" target="_blank">Visit Now</a>
+                <li class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">help</li>
+                <li class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">support</li>
+                <li class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">message</li>
+                <li class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">contact</li>
+                <li class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">connect</li>
+                <li class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">feedback</li>
+            </ol>
+        </div>
+    </div>
+    
 
     <script>
         var slideIndex = 0;
@@ -45,6 +134,16 @@
             if (slideIndex > x.length) {slideIndex = 1} 
             x[slideIndex-1].style.display = "block"; 
             setTimeout(carousel, 2000); 
+        }
+
+        // close element
+        var closebtns = document.getElementsByClassName("close");
+        var i;
+
+        for (i = 0; i < closebtns.length; i++) {
+        closebtns[i].addEventListener("click", function() {
+            this.parentElement.style.display = 'none';
+        });
         }
     </script>
 {% endblock %}

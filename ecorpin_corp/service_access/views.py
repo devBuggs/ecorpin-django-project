@@ -30,7 +30,7 @@ def contact_request(request):
 @login_required(login_url='service_access:login')
 def service_logout(request):
     logout(request)
-    return redirect("service_access:contact_request")
+    return redirect("service_access:dashboard")
 
 def login_view(request):
     if request.method == 'POST':
@@ -62,11 +62,19 @@ class ServiceDashboard(LoginRequiredMixin, View):
     def get(self, request):
         # <view logic>
         print("-------------------------------------------------- getting things : dashboard ")
-        projects = Service.objects.get(service_id = ).bulk()
-        return render(request, 'service_access/dashboard.html')
+        #projects = Service.objects.get(service_id = request.user.service_user.service_id.id)
+        service_user_id = ServiceUser.objects.get(user = request.user.id)
+        #print("----------------------------------> ", request.user)
+        service_list = Service.objects.filter(service_id = service_user_id)
+        print("-----------------------------------> ", service_list)
+        #print("-----------------------------------> ", projects)
+        context = {
+            'service_list': service_list,
+        }
+        return render(request, 'service_access/dashboard.html', context)
     def post(self, request):
         #<view logic>
-        return redirect('ecorpin:team')
+        return redirect('ecorpin:feedback')
 
 class ServiceUpdateView():
     # logic for the service/profile/information update request

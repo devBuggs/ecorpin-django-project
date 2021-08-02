@@ -26,7 +26,7 @@ class ContactRequest(models.Model):
 
 # extending existing User model into ServiceUser for seperate active ecorpin service user 
 class ServiceUser(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, related_name='service_user', on_delete=models.CASCADE)
     service_id = models.CharField(max_length=12, unique=True, blank=False)
     
     def __str__(self):
@@ -59,11 +59,12 @@ class Service(models.Model):
     live_url = models.URLField(blank=True)
     payment_status = models.CharField(max_length=50, blank=True) # need focus
     development_phase = models.OneToOneField(DevelopmentStatus, on_delete=models.SET_NULL, null=True)
-    status = models.OneToOneField(ServiceStatus, on_delete=models.SET_NULL, null=True)
+    status = models.ForeignKey(ServiceStatus, on_delete=models.SET_NULL, null=True)
     start_date = models.DateField(default=timezone.now)
     deadline = models.DateField(blank=True)
     dedicatedTime = models.IntegerField()
     notification = models.CharField(max_length=150, default=None, blank=True)
 
     def __str__(self):
-        return "{}".format(self.service_id.service_id)
+        #return "{}".format(self.service_id.service_id)
+        return "{}".format(self.title)
