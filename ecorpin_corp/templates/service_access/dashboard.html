@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% extends 'service_access/base.html' %}
-{% block title %} Dashboard | Ecorpin {% endblock %}
+{% block title %}{{ info.title }}{% endblock %}
 
 {% block style %}
     <style>
@@ -21,7 +21,7 @@
         <div class="w3-content w3-twothird" style="max-width:auto">
         {% for service in service_list %}
             <!-- w3-animate-right w3-animate-fading -->
-            <div class="myListSlide w3-container w3-text-white w3-padding-large">
+            <div class="myListSlide w3-animate-left w3-animate-fading w3-container w3-text-white w3-padding-large">
                 <h1 class="w3-text-sand w3-serif">{{ service.title }}</h1>
                 <h4 class="w3-text-sand w3-serif">{{ service.description }}</h4>
                 <table class="w3-table w3-bordered w3-responsive w3-half">
@@ -118,6 +118,10 @@
             </ol>
         </div>
     </div>
+
+    <section class="w3-section w3-row w3-center">
+        {{ info.edge_headBox }}
+    </section>
     
 
     <script>

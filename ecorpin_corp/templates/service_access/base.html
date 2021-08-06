@@ -16,11 +16,10 @@
         <!-- Sidebar/menu -->
         <nav class="w3-sidebar w3-bar-block w3-black w3-animate-right w3-top w3-text-light-grey w3-large" style="z-index:3;width:250px;font-weight:bold;display:none;right:0;" id="mySidebar">
             <a href="javascript:void()" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-32">CLOSE</a> 
-            <a href="https://www.w3schools.com/w3css/tryw3css_templates_portfolio3.htm#" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">Dashboard</a> 
-            <a href="https://www.w3schools.com/w3css/tryw3css_templates_portfolio3.htm#about" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">Profile</a> 
-            <a href="https://www.w3schools.com/w3css/tryw3css_templates_portfolio3.htm#contact" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">Settings</a>
-            <a href="https://www.w3schools.com/w3css/tryw3css_templates_portfolio3.htm#" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">Support</a> 
-            <a href="https://www.w3schools.com/w3css/tryw3css_templates_portfolio3.htm#about" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-16">Contact</a> 
+            <a href="{% url 'service_access:dashboard' %}" class="w3-bar-item w3-button w3-center w3-padding-16">Dashboard</a> 
+            <a href="{% url 'service_access:profile' %}" class="w3-bar-item w3-button w3-center w3-padding-16">Profile</a>
+            <a href="#" class="w3-bar-item w3-button w3-center w3-padding-16">Support</a> 
+            <a href="#" class="w3-bar-item w3-button w3-center w3-padding-16">Contact</a> 
             {% if request.user.is_authenticated %}
                 <a href={% url 'service_access:logout' %} class="w3-bar-item w3-button w3-center w3-padding-16">Logout</a>
             {% endif %}

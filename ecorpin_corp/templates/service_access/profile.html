@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+{% extends 'service_access/base.html' %}
+
+{% block style %}
+    <style>
+        body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+        .w3-quarter img{margin-bottom: -6px; cursor: pointer}
+        .w3-quarter img:hover{opacity: 0.6; transition: 0.3s}
+        .myListSlide {display:none;}
+        .w3-animate-fading{animation-duration: 2000ms;}
+    </style>
+{% endblock %}
+
+<!-- Endpoint Information -->
+{% if info %}
+    {% block title %}{{ info.title }}{% endblock %}
+    
+
+    {% block end-point %} {{ info.end_point }} {% endblock %}
+    {% block side-nav %} {{ info.sideNav }} {% endblock %}
+    {% block main-headBox %}<h2>{{ info.main_headBox }}</h2>{% endblock %}
+    {% block edge-headBox %}<h3></h3>{% endblock %}
+{% endif %}
+
+{% block content %}
+    {% if request.user.is_authenticated %}
+        <p class="w3-xxlarge w3-hide-small w3-text-teal w3-serif w3-center w3-padding-32 w3-sand">Welcome Back! {{ request.user.first_name }} {{ request.user.last_name }}</p>
+    {% endif %}
+
+    <div class="w3-row w3-padding-large">
+        <div class="w3-half w3-border w3-round w3-padding-large">
+            <h3 class="w3-text-sand w3-large">Profile Details!</h3>
+            <h5>Service ID: {{ request.user.service_user.service_id }}</h5>
+            <h5>Username: {{ request.user.username }}</h5>
+            <h5>First Name: {{ request.user.first_name }}</h5>
+            <h5>Last Name: {{ request.user.last_name }}</h5>
+            <h5>Email: {{ request.user.email }}</h5>
+            <h5>System ID:{{ request.user.id }}</h5>
+            <h5>Email: {{ request.user.email }}</h5>
+        </div>
+        <div class="w3-half w3-card-4 w3-padding-large">
+            <h3 class="w3-text-teal w3-large">Profile Details!</h3>
+            <h4 class="w3-large">Username: {{ request.user.username }}</h4>
+            <h5 class="w3-large">Name: {{ request.user.first_name }} {{ request.user.last_name }}</h5>
+            <h5 class="w3-large">Email: {{ request.user.email }}</h5>
+            <h5 class="w3-large">User Id: {{ request.user.id }}</h5>
+            <h5 class="w3-large">Service Id: {{ request.user.service_user.service_id }}</h5>
+            <h5 class="w3-large">Last Access: {{ request.user.last_login }}</h5>
+        </div>
+    </div>
+
+    <div class="w3-row">    
+        <form class="w3-half" method='POST'>
+            {% csrf_token %}
+            <input type="text" class="w3-input w3-half w3-border w3-border-teal" name="search_index" placeholder="search...">
+            <input type='submit' class="w3-btn w3-text-teal w3-border w3-border-teal w3-border" value="Submit">
+        </form>
+        <div class="w3-half w3-teal w3-right">
+            <ol class="w3-ol w3-right">
+                <a class="w3-btn w3-border-bottom w3-border-black w3-hover-border-red w3-serif " href="{{ service.live_url }}" target="_blank">Visit Now</a>
+                <li class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">help</li>
+                <li class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">support</li>
+                <li class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">message</li>
+                <li class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">contact</li>
+                <li class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">connect</li>
+                <li class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">feedback</li>
+            </ol>
+        </div>
+    </div>
+    
+    <div class="section w3-row  w3-padding-large w3-xlarge w3-text-white w3-center">
+        {{ info.edge_headBox }}
+    </div>
+
+    <script>
+        var slideIndex = 0;
+        carousel();
+
+        function carousel() {
+            var i;
+            var x = document.getElementsByClassName("myListSlide");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none"; 
+            }
+            slideIndex++;
+            if (slideIndex > x.length) {slideIndex = 1} 
+            x[slideIndex-1].style.display = "block"; 
+            setTimeout(carousel, 2000); 
+        }
+
+        // close element
+        var closebtns = document.getElementsByClassName("close");
+        var i;
+
+        for (i = 0; i < closebtns.length; i++) {
+        closebtns[i].addEventListener("click", function() {
+            this.parentElement.style.display = 'none';
+        });
+        }
+    </script>
+{% endblock %}

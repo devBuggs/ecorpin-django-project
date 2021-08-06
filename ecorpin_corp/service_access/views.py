@@ -2,11 +2,14 @@ from django.shortcuts import render, redirect
 from django.views import View
 from django.http import HttpResponse 
 
+from django.urls import reverse
+
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import ContactRequest, ServiceUser, Service
+from service_access.models import ContactRequest, ServiceUser, Service
+from ecorpin.models import Endpoint_info
 from .forms import ContactRequestForm
 
 # Create your views here.
@@ -30,7 +33,7 @@ def contact_request(request):
 @login_required(login_url='service_access:login')
 def service_logout(request):
     logout(request)
-    return redirect("service_access:dashboard")
+    return redirect("service_access:login")
 
 def login_view(request):
     if request.method == 'POST':
@@ -68,13 +71,30 @@ class ServiceDashboard(LoginRequiredMixin, View):
         service_list = Service.objects.filter(service_id = service_user_id)
         print("-----------------------------------> ", service_list)
         #print("-----------------------------------> ", projects)
+        info = Endpoint_info.objects.get(end_point="Dashboard")
         context = {
             'service_list': service_list,
+            'info':info,
         }
         return render(request, 'service_access/dashboard.html', context)
     def post(self, request):
         #<view logic>
         return redirect('ecorpin:feedback')
+
+class ServiceUserProfile(LoginRequiredMixin, View):
+    template_name = 'service_access/profile.html'
+    
+    def get(self, request):
+        #return reverse('ecorpin:team')
+        print("--------------------------- Service User Profile ---------------------------")
+        info = Endpoint_info.objects.get(end_point="Profile")
+        context = {
+            'info':info,
+        }
+        return render(request, 'service_access/profile.html', context)
+
+    def post(self, request):
+        pass
 
 class ServiceUpdateView():
     # logic for the service/profile/information update request
