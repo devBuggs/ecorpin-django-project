@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'service_access.apps.ServiceAccessConfig',
     'bbit.apps.BbitConfig',
     'works.apps.WorksConfig',
+    'payment',
 ]
 
 MIDDLEWARE = [
@@ -111,3 +112,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Payment Merchant Credentials
+#Merchant_ID = 'dWnZex88696442264230'
+PAYTM_MERCHANT_ID = 'qXBQDm56395068046308'
+PAYTM_SECRET_KEY = 'wtscPP8cw#sQwFIo'
+PAYTM_WEBSITE = 'WEBSTAGING'
+PAYTM_CHANNEL_ID = 'WEB'
+PAYTM_INDUSTRY_TYPE_ID = 'Retail'

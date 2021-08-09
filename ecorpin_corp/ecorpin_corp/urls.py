@@ -10,6 +10,6 @@ urlpatterns = [
     path('', include('service_access.urls')),
     path('', include('bbit.urls')),
     path('', include('works.urls')),
-    #path('accounts/', include('django.contrib.auth.urls')),
+    path('', include('payment.urls')),
     
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

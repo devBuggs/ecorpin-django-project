@@ -1,0 +1,134 @@
+{% extends 'service_access/base.html' %}
+
+{% block stylePannel %}
+<style>
+    .td_label {
+        width: 30%;
+        color: blueviolet;
+        font-size: medium;
+    }
+
+    input {
+        color: #f44336;
+    }
+
+    .button {
+        width: 100%;
+        border: none;
+        color: white;
+        padding: 8px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        transition-duration: 0.5s;
+        cursor: pointer;
+    }
+
+    .button3 {
+        background-color: white;
+        color: black;
+        border: 2px solid #f44336;
+    }
+
+    .button3:hover {
+        background-color: #f44336;
+        color: white;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="w3-container w3-padding-16">
+    <div class="w3-row w3-half">
+        <form id="paymentDetail" class="w3-card-4 w3-padding-large w3-round" action="#">
+            <h3 class=" w3-xxlarge w3-serif w3-mobile">Verify information before payment</h3>
+            <hr>
+            <table class="w3-table">
+                <tr>
+                    <td class="td_label">Username</td>
+                    <td><input id="username" name="username" value="{{ user.username }}" /></td>
+                </tr>
+                <tr>
+                    <td class="td_label">Name</td>
+                    <td><input id="customerName" name="customerName" value="{{ payment.customerName }}" /></td>
+                </tr>
+                <tr>
+                    <td class="td_label">Email</td>
+                    <td><input id="customerEmail" name="customerEmail" value="{{ payment.customerEmail }}" /></td>
+                </tr>
+                <tr>
+                    <td class="td_label">Phone</td>
+                    <td><input id="customerPhone" name="customerPhone" value="{{ payment.customerPhone }}" /></td>
+                </tr>
+                <tr>
+                    <td class="td_label">Amount</td>
+                    <td><input id="orderAmount" name="orderAmount" value="₹{{ payment.orderAmount }}" /></td>
+                </tr>
+                <tr>
+                    <td class="td_label">Currency</td>
+                    <td><input id="orderCurrency" name="orderCurrency" value="{{ payment.orderCurrency }}" /></td>
+                </tr>
+                <tr>
+                    <td class="td_label">Note</td>
+                    <td><input id="orderNote" name="orderNote" value="{{ payment.orderNote }}" /></td>
+                </tr>
+                
+            </table>
+        </form>
+    </div>
+    <div class="w3-row w3-third w3-margin-left ">
+        <div class="w3-card-4 w3-padding-large w3-round">
+            <h2 class=" w3-xxlarge w3-serif">Payment Home</h2>
+            <hr>
+            {% if error %}
+            <h3>{{ error }}</h3>
+            <hr>
+            {% endif %}
+            <form method="POST">
+                {% csrf_token %}
+                <table class="w3-table">
+                    <tr>
+                        <td class="td_label">Username</td>
+                        <td><input type="text" name="username" value="{{ user.username }}" required></td>
+                    </tr>
+                    <tr>
+                        <td class="td_label">Amount</td>
+                        <td><input type="number" name="amount" value="5000"></td>
+                    </tr>
+                </table>
+                <input type="submit" class="button button3" name="submit" value="Make Payment" required>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- display payment checkout form -->
+<script>
+    var username = document.getElementById("username");
+    var orderAmount = document.getElementById("orderAmount");
+    var orderCurrency = document.getElementById("orderCurrency");
+    var orderNote = document.getElementById("orderNote");
+    var customerName = document.getElementById("customerName");
+    var customerEmail = document.getElementById("customerEmail");
+    var customerPhone = document.getElementById("customerPhone");
+    username.classList.add("w3-input");
+    orderAmount.classList.add("w3-input");
+    orderCurrency.classList.add("w3-input");
+    orderNote.classList.add("w3-input");
+    customerName.classList.add("w3-input");
+    customerPhone.classList.add("w3-input");
+    customerEmail.classList.add("w3-input");
+
+    username.disabled = true;
+    orderAmount.disabled = true;
+    orderCurrency.disabled = true;
+    orderNote.disabled = true;
+    customerName.disabled = true;
+    customerPhone.disabled = true;
+    customerEmail.disabled = true;
+</script>
+
+
+{% endblock %}

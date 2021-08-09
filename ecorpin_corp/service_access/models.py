@@ -48,7 +48,7 @@ class ServiceStatus(models.Model):
 
 # class for user services
 class Service(models.Model):
-    service_id = models.ForeignKey(ServiceUser, on_delete=models.CASCADE)
+    service_id = models.ForeignKey(ServiceUser, related_name='projects', on_delete=models.CASCADE)
     email = models.EmailField()
     contact = models.CharField(max_length=15, blank=True)
     title = models.CharField(max_length=100, blank=False)

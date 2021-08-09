@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+    <head>
+        {% load static %}
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Ecorpin :: Payment</title>
+        <link rel="stylesheet" href="{% static 'css/w3.css' %}" media="all" />
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+        <style>
+            a {text-decoration: none;}
+        </style>
+    </head>
+    <body>
+        <div class="w3-card-4 w3-padding-64 w3-teal w3-center">
+            <p class="w3-text-white w3-hide-small w3-jumbo"><b>Ecorpin Corporation</b></p>
+            <p class="w3-text-white w3-xlarge w3-hide-large w3-large-medium"><b>Ecorpin Corporation</b></p>
+        </div>
+
+        {% if error %}
+        <div class="w3-card-4 w3-padding-48 w3-center w3-padding-large">
+            <p class="w3-text-black w3-xlarge sm w3-padding-large w3-serif">you shouldn't be here.
+                <hr> we're taking you to our homepage.</p>
+            <script>
+                setTimeout(function(){
+                   window.location.href = '/';
+                }, 5000);
+             </script>
+        </div>
+        <p class="w3-small w3-text-teal w3-center"><b> ©2021 Ecorpin Corporation | Rights reserved.</b></p>
+        {% else %}
+        <div class="w3-card-4 w3-padding-48 w3-center w3-padding-large">
+            <table class="w3-table w3-mobile w3-striped w3-border w3-responsive">
+                <tr>
+                    <td>Status</td>
+                    <td>{{ STATUS }}</td>
+                </tr>
+                <tr>
+                    <td>Order ID</td>
+                    <td>{{ ORDERID }}</td>
+                </tr>
+                <tr>
+                    <td>Amount</td>
+                    <td>{{ TXNAMOUNT }}</td>
+                </tr>
+                <tr>
+                    <td>TXN ID</td>
+                    <td>{{ TXNID }}</td>
+                </tr>
+                <tr>
+                    <td>Date</td>
+                    <td>{{ TXNDATE }}</td>
+                </tr>
+                <tr>
+                    <td>Response</td>
+                    <td>{{ RESPMSG }}</td>
+                </tr>
+            </table>
+            <hr>
+            <form action="{% url 'payment:payment_info' %}" method="post" id="data">
+                {% csrf_token %}
+                <input type="hidden" name="MID" value="{{ MID }}">
+                <input type="hidden" name="TXNID" value="{{ TXNID }}">
+                <input type="hidden" name="ORDERID" value="{{ ORDERID }}">
+                <input type="hidden" name="BANKTXNID" value="{{ BANKTXNID }}">
+                <input type="hidden" name="TXNAMOUNT" value="{{ TXNAMOUNT }}">
+                <input type="hidden" name="CURRENCY" value="{{ CURRENCY }}">
+                <input type="hidden" name="STATUS" value="{{ STATUS }}">
+                <input type="hidden" name="RESPCODE" value="{{ RESPCODE }}">
+                <input type="hidden" name="RESPMSG" value="{{ RESPMSG }}">
+                <input type="hidden" name="TXNDATE" value="{{ TXNDATE }}">
+                <input type="hidden" name="GATEWAYNAME" value="{{ GATEWAYNAME }}">
+                <input type="hidden" name="BANKNAME" value="{{ BANKNAME }}">
+                <input type="hidden" name="BIN_NAME" value="{{ BIN_NAME }}">
+                <input type="hidden" name="PAYMENTMODE" value="{{ PAYMENTMODE }}">
+                <input type="hidden" name="CHECKSUMHASH" value="{{ CHECKSUMHASH }}">
+                <input type="hidden" name="message" value="{{ message }}">
+                
+                <button type="submit" id="submit" class="w3-btn w3-green">Send Data</button>
+            </form>
+        </div>
+
+        <div class="w3-hide">
+            <h2>Callback Messsage: </h2> <br>
+            <h3> Checksum Verification: {{ message }} </h3> <br>
+            MID: {{ MID }} <br>
+            TXNID: {{ TXNID }} <br>
+            ORDERID: {{ ORDERID }} <br>
+            BANKTXNID: {{ BANKTXNID }} <br>
+            TXNAMOUNT: {{ TXNAMOUNT }} <br>
+            CURRENCY: {{ CURRENCY }} <br>
+            <h3> STATUS: {{ STATUS }} </h3> <br>
+            RESPCODE: {{ RESPCODE }} <br>
+            RESPMSG: {{ RESPMSG }} <br>
+            TXNDATE: {{ TXNDATE }} <br>
+            GATEWAYNAME: {{ GATEWAYNAME }} <br>
+            BANKNAME: {{ BANKNAME }} <br>
+            BIN_NAME: {{ BIN_NAME }} <br>
+            PAYMENTMODE: {{ PAYMENTMODE }} <br>
+            CHECKSUMHASH: {{ CHECKSUMHASH }}
+        </div>
+
+        <script>
+            setInterval(function () {
+                document.getElementById("submit").click();
+            }, 5000);
+        </script>
+        {% endif %}
+
+    </body>
+</html>

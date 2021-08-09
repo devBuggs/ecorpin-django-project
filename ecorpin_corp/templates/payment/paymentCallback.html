@@ -1,0 +1,102 @@
+{% extends 'service_access/base.html' %}
+
+{% block stylePannel %}
+<style>
+    .td_label {
+        width: 30%;
+        color: blueviolet;
+        font-size: medium;
+    }
+    input {
+        color: #f44336;
+    }
+    .button {
+        width: 100%;
+        border: none;
+        color: white;
+        padding: 8px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        transition-duration: 0.5s;
+        cursor: pointer;
+    }
+    .button3 {
+        background-color: white;
+        color: black;
+        border: 2px solid #f44336;
+    }
+    .button3:hover {
+        background-color: #f44336;
+        color: white;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+{% if error == 1 %}
+<div class="w3-card-2 w3-padding-48 w3-center w3-padding-large">
+    <p class="w3-text-black w3-xlarge sm w3-padding-large w3-serif"><q>please upgrade your account.</q>
+        <hr> we're taking you to your profile.
+    </p>
+    <script>
+        setTimeout(function () {
+            window.location.href = '/profile/';
+        }, 5000);
+    </script>
+</div>
+<p class="w3-small w3-text-deep-purple w3-center"><b> ©2021 Ecorpin Corporation | Rights reserved.</b></p>
+{% elif error == 0 %}
+<div class="w3-card-4 w3-padding-48 w3-center w3-padding-large">
+    <p class="w3-text-black w3-xlarge sm w3-padding-large w3-serif"><q>Unable to enroll...</q>
+        <hr>try again after some time...
+        <br>we're redirecting you to enroll course.
+    </p>
+    <script>
+        setTimeout(function () {
+            window.location.href = '/payment_info/';
+        }, 5000);
+    </script>
+</div>
+<p class="w3-small w3-text-teal w3-center"><b> ©2021 Ecorpin Corporation | Rights reserved.</b></p>
+{% else %}
+<div class="w3-padding-16">
+    <div class="w3-card-2 w3-padding-large w3-round">
+        <p class="w3-text-white w3-xlarge w3-serif w3-center">Payment Successfully Received.</p>
+        <hr>
+        <h2 class="w3-text-teal"><b>Enroll Course Now</b></h2>
+        <form method="POST">
+            {% csrf_token %}
+            <table class="w3-table w3-half">
+                <tr>
+                    <td class="td_label">Username</td>
+                    <td><input type="text" class="w3-input" name="username" value="{{ user.username }}" disabled required></td>
+                </tr>
+                <tr>
+                    <td class="td_label">Service ID</td>
+                    <td><input type="text" class="w3-input" name="service_id" value="{{ request.user.service_user.service_id }}" disabled required></td>
+                </tr>
+                <tr>
+                    <td class="td_label">Paid Amount</td>
+                    <td><input type="text" class="w3-input" name="subscription" value="{{ user.username }}" disabled required></td>
+                </tr>
+                <tr>
+                    <td class="td_label">Payment for</td>
+                    <td><select name="payment_for" id="payment_for" class="w3-select w3-half">
+                            {% for project in projects %}
+                                <option value="{{ project.id }}">{{ project.title }}</option>
+                            {% endfor %}
+                        </select></td>
+                </tr>
+            </table>
+            <input type="submit" class="w3-btn w3-border w3-border-teal w3-right" name="submit" value="Update Payment Status" required>
+        </form>
+        <p class="w3-small w3-text-teal w3-center"><b> ©2021 Ecorpin Corporation | Rights reserved.</b></p>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}
