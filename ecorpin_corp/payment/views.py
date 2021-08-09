@@ -11,7 +11,7 @@ from .paytm import generate_checksum, verify_checksum
 from service_access.models import Service
 
 # import other apps views
-from service_access.views import ServiceUserProfile
+#from service_access.views import ServiceUserProfile
 
 # Create your views here.
 @login_required
@@ -21,7 +21,7 @@ def initiate_payment(request):
         service_id = request.user.service_user.service_id
         orderAmount = '5000'
         orderCurrency = 'INR'
-        orderNote = 'Ecorpin Corporation Payment Receipt for {username} having Service ID {sid}'.format(username=current_user.username, sid=service_id)
+        orderNote = 'Ecorpin Corporation payment for "{username}" having Service ID {sid}'.format(username=current_user.username, sid=service_id)
         customerName = current_user.first_name +' '+current_user.last_name
         customerEmail = current_user.email
         customerPhone = current_user.service_user.projects
@@ -110,7 +110,7 @@ def paymentCallback(request):
             if str(received_data['STATUS']) == "['TXN_SUCCESS']" and received_data['BANKTXNID']:
                 print("---------- Updating payment status in account ---------------")
                 # logic to update in account
-                return redirect(ServiceUserProfile)
+                return redirect('service_access:profile')
             elif str(received_data['STATUS']) == "['TXN_FAILURE']":
                 print("------------- Payment Failed -----------------")
                 return redirect(initiate_payment)

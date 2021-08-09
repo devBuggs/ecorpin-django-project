@@ -66,5 +66,4 @@ class Service(models.Model):
     notification = models.CharField(max_length=150, default=None, blank=True)
 
     def __str__(self):
-        #return "{}".format(self.service_id.service_id)
         return "{}".format(self.title)
