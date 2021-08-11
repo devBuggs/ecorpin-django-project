@@ -22,18 +22,13 @@
 {% endif %}
 
 {% block content %}
-    <!-- {% if request.user.is_authenticated %}
-        <p class="w3-xxlarge w3-hide-small w3-text-teal w3-serif w3-center w3-padding-32 w3-sand">Welcome Back! {{ request.user.first_name }} {{ request.user.last_name }}</p>
-    {% endif %} -->
-
     <div class="w3-bar w3-text-teal w3-serif w3-center w3-padding-16 w3-sand">
-        <span class="w3-left w3-xlarge">Welcome Back! {{ request.user.first_name }} {{ request.user.last_name }}</span>
+        <span class="w3-left w3-xlarge">Welcome back! {{ request.user.first_name }} {{ request.user.last_name }}</span>
         <a href="{% url 'service_access:logout' %}" class="w3-btn w3-border w3-border-teal w3-round w3-medium w3-right w3-bar-item w3-margin-right">logout</a>
         <a href="#" class="w3-btn w3-border w3-border-teal w3-round w3-medium w3-right w3-bar-item w3-margin-right">support</a>
         <a href="{% url 'service_access:profile' %}" class="w3-btn w3-border w3-border-teal w3-round w3-medium w3-right w3-bar-item w3-margin-right">profile</a>
         <a href="{% url 'service_access:dashboard' %}" class="w3-btn w3-border  w3-border-teal w3-round w3-medium w3-right w3-bar-item w3-margin-right">dashboard</a>
     </div>
-
 
     <div class="w3-row w3-padding-large">
         <div class="w3-half w3-border w3-round w3-padding-large">
@@ -46,38 +41,14 @@
             <h5>System ID:{{ request.user.id }}</h5>
             <h5>Email: {{ request.user.email }}</h5>
         </div>
-        <div class="w3-third w3-card-4 w3-padding-large w3-right">
+        <div class="w3-third w3-card-4 w3-leftbar w3-border-teal w3-padding-large w3-right">
             <h3 class="w3-text-teal w3-large">Profile Details!</h3>
-            <h4 class="w3-large">Username: {{ request.user.username }}</h4>
-            <h5 class="w3-large">Name: {{ request.user.first_name }} {{ request.user.last_name }}</h5>
-            <h5 class="w3-large">Email: {{ request.user.email }}</h5>
-            <h5 class="w3-large">User Id: {{ request.user.id }}</h5>
-            <h5 class="w3-large">Service Id: {{ request.user.service_user.service_id }}</h5>
-            <h5 class="w3-large">Last Access: {{ request.user.last_login }}</h5>
+            <h5 class="w3-medium">Service Id: {{ request.user.service_user.service_id }}</h5>
+            <h4 class="w3-medium">Username: {{ request.user.username }}</h4>
+            <h5 class="w3-medium">Name: {{ request.user.first_name }} {{ request.user.last_name }}</h5>
+            <h5 class="w3-medium">Email: {{ request.user.email }}</h5>
+            <h5 class="w3-medium">Last Access: {{ request.user.last_login }}</h5>
         </div>
-    </div>
-
-    <div class="w3-row">    
-        <form class="w3-half" method='POST'>
-            {% csrf_token %}
-            <input type="text" class="w3-input w3-half w3-border w3-border-teal" name="search_index" placeholder="search...">
-            <input type='submit' class="w3-btn w3-text-teal w3-border w3-border-teal w3-border" value="Submit">
-        </form>
-        <div class="w3-half w3-teal w3-right">
-            <ol class="w3-ol w3-right">
-                <a class="w3-btn w3-border-bottom w3-border-black w3-hover-border-red w3-serif " href="{{ service.live_url }}" target="_blank">Visit Now</a>
-                <li class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">help</li>
-                <li class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">support</li>
-                <li class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">message</li>
-                <li class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">contact</li>
-                <li class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">connect</li>
-                <li class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">feedback</li>
-            </ol>
-        </div>
-    </div>
-    
-    <div class="section w3-row  w3-padding-large w3-xlarge w3-text-white w3-center">
-        {{ info.edge_headBox }}
     </div>
 
     <script>

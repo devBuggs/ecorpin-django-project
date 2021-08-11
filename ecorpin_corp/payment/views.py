@@ -59,7 +59,7 @@ def initiate_payment(request):
         ('WEBSITE', settings.PAYTM_WEBSITE),
         ('INDUSTRY_TYPE_ID', settings.PAYTM_INDUSTRY_TYPE_ID),
         ('CALLBACK_URL', 'http://127.0.0.1:8000/callback/'),
-    ) #CALLBACK_URl needs to change with domain 
+    ) # CALLBACK_URl needs to change with domain 
     paytm_params = dict(params)
     checksum = generate_checksum(paytm_params, merchant_key)
 
@@ -110,10 +110,10 @@ def paymentCallback(request):
             if str(received_data['STATUS']) == "['TXN_SUCCESS']" and received_data['BANKTXNID']:
                 print("---------- Updating payment status in account ---------------")
                 # logic to update in account
-                return redirect('service_access:profile')
+                return redirect('payment:payment_info')
             elif str(received_data['STATUS']) == "['TXN_FAILURE']":
                 print("------------- Payment Failed -----------------")
-                return redirect(initiate_payment)
+                return redirect('payment:pay')
         else:
             raise ValueError("Payment before enrollment!")
         return render(request, 'payment/paymentCallback.html', context=None)

@@ -11,6 +11,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from service_access.models import ContactRequest, ServiceUser, Service
 from ecorpin.models import Endpoint_info
 from .forms import ContactRequestForm
+from payment.models import Transaction
 
 # Create your views here.
 def contact_request(request):
@@ -64,15 +65,12 @@ class ServiceDashboard(LoginRequiredMixin, View):
     template_name='service_access/dashboard.html'
     def get(self, request):
         # <view logic>
-        print("-------------------------------------------------- getting things : dashboard ")
-        #projects = Service.objects.get(service_id = request.user.service_user.service_id.id)
         service_user_id = ServiceUser.objects.get(user = request.user.id)
-        #print("----------------------------------> ", request.user)
         service_list = Service.objects.filter(service_id = service_user_id)
-        print("-----------------------------------> ", service_list)
-        #print("-----------------------------------> ", projects)
+        payment_list = Transaction.objects.filter(user=request.user)
         info = Endpoint_info.objects.get(end_point="Dashboard")
         context = {
+            'payment_list': payment_list,
             'service_list': service_list,
             'info':info,
         }

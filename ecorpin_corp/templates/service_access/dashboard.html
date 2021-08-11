@@ -8,9 +8,6 @@
         .w3-quarter img{margin-bottom: -6px; cursor: pointer}
         .w3-quarter img:hover{opacity: 0.6; transition: 0.3s}
         .myListSlide {display:none;}
-        .w3-animate-fading{
-        animation-duration: 1000ms;
-    }
     </style>
 {% endblock %}
 
@@ -19,16 +16,14 @@
         <p class="w3-xxxlarge w3-hide-small w3-text-teal w3-serif w3-center w3-padding-32 w3-sand">have a look! We're building your dream...</p>
     {% endif %}
 
-    <a href="{% url 'payment:pay' %}" class="w3-btn w3-border w3-border-teal">pay</a>
-
-    <div class="row">
+    <div class="w3-row">
         <div class="w3-content w3-twothird" style="max-width:auto">
         {% for service in service_list %}
             <!-- w3-animate-right w3-animate-fading -->
-            <div class="myListSlide w3-animate-left w3-animate-fading w3-container w3-text-white w3-padding-large">
+            <div class="myListSlide w3-container w3-animate-left w3-animate-fading w3-text-white">
                 <h1 class="w3-text-sand w3-serif">{{ service.title }}</h1>
                 <h4 class="w3-text-sand w3-serif">{{ service.description }}</h4>
-                <table class="w3-table w3-bordered w3-responsive w3-half">
+                <table class="w3-table w3-bordered  w3-half">
                     <tr>
                         <td>Service Id</td>
                         <td><strong>{{ service.service_id  }}</strong></td>
@@ -58,7 +53,7 @@
                         <td><strong>{{ service.status }}</strong></td>
                     </tr>
                 </table>
-                <table class="w3-table w3-bordered w3-mobile w3-padding-large w3-align-left w3-half">
+                <table class="w3-table w3-bordered  w3-half">
                     <tr>
                         <td>Development</td>
                         <td><strong>{{ service.development_phase }}</strong></td>
@@ -69,7 +64,7 @@
                     </tr>
                     <tr>
                         <td>Deadline</td>
-                        <td><input type="datetime" name="deadline" value="{{ service.deadline }}"></td>
+                        <td>{{ service.deadline }}</td>
                     </tr>
                     <tr>
                         <td>Time (in Hrs.)</td>
@@ -83,51 +78,25 @@
                         <td>Payment Status</td>
                         <td><strong>{{ service.payment_status }}</strong></td>
                     </tr>
+                    <tr>
+                        <td>Live URL</td>
+                        <td><a class="w3-btn w3-border w3-serif" href="{{ service.live_url }}" target="_blank">Visit Now</a></td>
+                    </tr>
                 </table>
             </div>
         {% endfor %}
         </div>
-        <div class="w3-third w3-pale-green w3-round w3-padding-large">
-            <div class="w3-text-teal w3-serif w3-center w3-xxlarge w3-border-bottom w3-border-teal">Notification</div>
+        <div class="w3-quarter w3-right w3-sand w3-round w3-padding-small">
+            <div class="w3-text-blue-gray w3-serif w3-center w3-xlarge w3-border-bottom w3-border-teal">recent payments</div>
             <ul class="w3-ul">
-                {% for service in service_list %}
-                    <li class="w3-text-teal"><span class="close w3-cursor w3-button w3-hover-red w3-round">&times;</span> {{ service.title }} - {{ service.notification }}</li>
+                {% for payment in payment_list %}
+                    <li class="w3-text-blue-gray w3-small w3-hover-pale-red"><span class="close w3-cursor w3-btn w3-text-red">&times;</span> {{ payment.order_id }} - {{ payment.amount }}</li>
                 {% endfor %}
             </ul>
-            <div class="w3-text-red w3-serif w3-center w3-xxlarge w3-border-bottom w3-border-teal">Live Status</div>
-            <ul class="w3-ul">
-                {% for service in service_list %}
-                    <li class="w3-text-teal"><span class="close w3-cursor w3-button w3-hover-red w3-round">&times;</span> {{ service.title }} <u class="w3-text-red">{{ service.status }}</u></li>
-                {% endfor %}
-            </ul>
-            <hr>
+            <br>
         </div>
     </div>
-
-    <div class="w3-row">    
-        <form class="w3-half" method='POST'>
-            {% csrf_token %}
-            <input type="text" class="w3-input w3-half w3-border w3-border-teal" name="search_index" placeholder="search...">
-            <input type='submit' class="w3-btn w3-text-teal w3-border w3-border-teal w3-border" value="Submit">
-        </form>
-        <div class="w3-half w3-teal w3-right">
-            <ol class="w3-ol w3-right">
-                <a class="w3-btn w3-border-bottom w3-border-black w3-hover-border-red w3-serif " href="{{ service.live_url }}" target="_blank">Visit Now</a>
-                <li class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">help</li>
-                <li class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">support</li>
-                <li class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">message</li>
-                <li class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">contact</li>
-                <li class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">connect</li>
-                <li class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">feedback</li>
-            </ol>
-        </div>
-    </div>
-
-    <section class="w3-section w3-row w3-center">
-        {{ info.edge_headBox }}
-    </section>
     
-
     <script>
         var slideIndex = 0;
         carousel();
@@ -141,7 +110,7 @@
             slideIndex++;
             if (slideIndex > x.length) {slideIndex = 1} 
             x[slideIndex-1].style.display = "block"; 
-            setTimeout(carousel, 2000); 
+            setTimeout(carousel, 5000); 
         }
 
         // close element
