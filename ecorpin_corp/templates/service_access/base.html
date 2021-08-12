@@ -6,15 +6,16 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="{% static 'css/w3.css' %}">
+        <link rel="stylesheet" href="{% static 'css/flatUIcolor.css' %}">
         {% block style %}
             <style>
             </style>
         {% endblock %}
     </head>
 
-    <body class="w3-dark-grey">
+    <body class="w3-dark-gray">
         <!-- Sidebar/menu -->
-        <nav class="w3-sidebar w3-bar-block w3-black w3-animate-right w3-top w3-text-light-grey w3-large" style="z-index:3;width:250px;font-weight:bold;display:none;right:0;" id="mySidebar">
+        <nav class="w3-sidebar w3-bar-block w3-flat-midnight-blue w3-animate-right w3-top w3-text-light-grey w3-large" style="z-index:3;width:250px;font-weight:bold;display:none;right:0;" id="mySidebar">
             <a href="javascript:void()" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-32">CLOSE</a> 
             <a href="{% url 'service_access:dashboard' %}" class="w3-bar-item w3-button w3-center w3-padding-16">Dashboard</a> 
             <a href="{% url 'service_access:profile' %}" class="w3-bar-item w3-button w3-center w3-padding-16">Profile</a>
@@ -27,34 +28,34 @@
 
         <!-- Top menu on small screens -->
         <header class="w3-container w3-top w3-white w3-xlarge w3-padding-16">
-            <span class="w3-left w3-padding w3-text-teal">Service Access</span>
+            <a href="{% url 'service_access:dashboard' %}" class="w3-span w3-btn w3-hover-none w3-left w3-padding w3-text-teal">Service Access</a>
             <a href="javascript:void(0)" class="w3-right w3-button w3-white w3-text-teal" onclick="w3_open()">☰</a>
         </header>
 
         <!-- Overlay effect when opening sidebar on small screens -->
         <div class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
-
         <!-- !PAGE CONTENT! -->
         <div class="w3-main w3-content" style="max-width:1600px;margin-top:83px">
+            <div class="w3-row w3-flat-green-sea">
+                <div class="w3-half">
+                    <p class="w3-padding-small w3-center w3-text-sand w3-large">have a look! We're building your dream...</p>
+                </div>
+                <ol class="w3-ol w3-right w3-border-left">
+                    <a href="{% url 'service_access:dashboard' %}" class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">dashboard</a>
+                    <a href="{% url 'service_access:profile' %}" class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">profile</a>
+                    <li class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">notification</li>
+                    <li class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">support</li>
+                    <a href="{% url 'payment:pay' %}" class="w3-btn w3-border-bottom w3-border-white w3-hover-border-black w3-serif">payment</a>
+                    <a href="{% url 'service_access:logout' %}" class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">logout</a>
+                </ol>
+            </div>
         {% block content %}
 
         {% endblock %} 
         </div>
 
-        <div class="  w3-teal w3-right">
-            <ol class="w3-ol w3-right">
-                <a class="w3-btn w3-border-bottom w3-border-black w3-hover-border-red w3-serif" href="{{ service.live_url }}" target="_blank">Visit Now</a>
-                <li class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">help</li>
-                <a class="w3-btn w3-border-bottom w3-hover-border-red w3-serif"  href="{% url 'payment:pay' %}">pay</a>
-                <li class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">support</li>
-                <li class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">contact</li>
-                <li class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">feedback</li>
-            </ol>
-        </div>
         
-        <div class="w3-row w3-center w3-text-sand w3-red w3-large">{{ info.edge_headBox }}</div>
-
         <script>
             // Script to open and close sidebar
             function w3_open() {

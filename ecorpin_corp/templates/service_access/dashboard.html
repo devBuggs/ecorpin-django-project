@@ -12,17 +12,11 @@
 {% endblock %}
 
 {% block content %}
-    {% if request.user.is_authenticated %}
-        <p class="w3-xxxlarge w3-hide-small w3-text-teal w3-serif w3-center w3-padding-32 w3-sand">have a look! We're building your dream...</p>
-    {% endif %}
-
-    <div class="w3-row">
-        <div class="w3-content w3-twothird" style="max-width:auto">
+    <div class="w3-row w3-flat-wet-asphalt w3-padding-32 w3-padding-64 ">
         {% for service in service_list %}
-            <!-- w3-animate-right w3-animate-fading -->
-            <div class="myListSlide w3-container w3-animate-left w3-animate-fading w3-text-white">
-                <h1 class="w3-text-sand w3-serif">{{ service.title }}</h1>
-                <h4 class="w3-text-sand w3-serif">{{ service.description }}</h4>
+            <div class="myListSlide w3-animate-fading w3-animate-left w3-twothird w3-card-4 w3-leftbar w3-border-teal w3-padding-large">
+                <h1 class="w3-text-teal w3-serif">{{ service.title }}</h1>
+                <h4 class="w3-text-sand">{{ service.description }}</h4>
                 <table class="w3-table w3-bordered  w3-half">
                     <tr>
                         <td>Service Id</td>
@@ -85,17 +79,47 @@
                 </table>
             </div>
         {% endfor %}
-        </div>
-        <div class="w3-quarter w3-right w3-sand w3-round w3-padding-small">
-            <div class="w3-text-blue-gray w3-serif w3-center w3-xlarge w3-border-bottom w3-border-teal">recent payments</div>
+        
+        <div class="w3-third w3-card-4 w3-leftbar w3-border-teal w3-padding-large w3-right">
+            <h3 class="w3-text-teal w3-large">Notification's</h3>
             <ul class="w3-ul">
-                {% for payment in payment_list %}
-                    <li class="w3-text-blue-gray w3-small w3-hover-pale-red"><span class="close w3-cursor w3-btn w3-text-red">&times;</span> {{ payment.order_id }} - {{ payment.amount }}</li>
+                {% for service in service_list %}
+                    <li class="w3-text-blue-gray w3-small w3-hover-blue-gray"><b class="w3-text-white"> {{ service.title }}</b> - {{ service.development_phase }} {{ service.notification }}<span class="close w3-cursor w3-text-red w3-right">&times;</span></li>
                 {% endfor %}
             </ul>
-            <br>
+            <br >
+            <h3 class="w3-text-teal w3-large">{{ request.user.service_user.service_id }} recent payments</h3>
+            <ul class="w3-ul">
+                {% for payment in payment_list %}
+                    <li class="w3-text-blue-gray w3-small w3-hover-pale-red">{{ payment.order_id }} - {{ payment.amount }} <span class="close w3-cursor w3-text-red w3-right">&times;</span></li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
+
+    <div class="w3-container w3-flat-midnight-blue w3-padding-64">
+        <div class="w3-third w3-padding-large">
+            <h3 class=""><strong>request a call back.</strong></h3>
+            <p class="w3-medium w3-serif w3-padding-medium">Would you like to speak one of our technical consultants over the phone? Just submit your details and we'll be in touch shortly.</p>
+        </div>
+        <div class="w3-twothird w3-padding-small">
+            <h6 class="w3-large w3-serif w3-text-white w3-margin-left">I would like to discuss:</h6>
+            <form class="w3-row w3-padding-small w3-medium" method="POST">
+                <div class="w3-half w3-padding-small">
+                    <input type="text" class="w3-input w3-serif" name="catogary" id="id_catogary" placeholder="choose"><br>
+                    <input type="text" class="w3-input w3-serif" name="phone" id="id_phone" placeholder="Phone number">
+                </div>
+                <div class="w3-half w3-padding-small">
+                    <input type="text" class="w3-input w3-serif" name="name" id="id_name" placeholder="Name"><br>
+                    <input type="email" class="w3-input w3-serif" name="email" id="id_email" placeholder="Email">
+                </div>
+                <input type="submit" class="w3-btn w3-round w3-border w3-border-white" value="submit">
+            </form>
+        </div>
+    </div>
+
+    <div class="w3-row w3-center w3-text-sand w3-red w3-large w3-padding-32">{{ info.edge_headBox }}</div>
+
     
     <script>
         var slideIndex = 0;
