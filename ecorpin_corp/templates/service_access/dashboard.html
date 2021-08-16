@@ -21,22 +21,32 @@
     <div class="w3-section">
         <div class="w3-bar w3-light-grey">
             <div class="w3-dropdown-hover">
-                <button class="w3-button">Dropdown</button>
-                <div class="w3-dropdown-content w3-bar-block w3-card-4">
+                <!-- <select id="id_project" class="w3-select w3-bar-item w3-button" name="project">
+                    <option disabled selected>Choose project</option>
                     {% for service in service_list %}
-                        <a href="#" onclick="accordion('Demo3')" class="w3-bar-item w3-button">{{ service.title }}</a>
-                        <!-- <button onclick="accordion('Demo3')" class="w3-button w3-block">75%</button> -->
+                    <option value="{{ service.id }}" onclick="accordion('Demo3')" class="w3-button w3-bar-item w3-flat-wet-asphalt">{{ service.title }}</option>
                     {% endfor %}
+                </select> -->
+                <div class="w3-red w3-section w3-flat-wet-asphalt" style="width:75%">
+                    <!-- <button onclick="accordion('Demo3')" class="w3-button w3-block">75%</button> -->
+                    <div id="Demo3" class="w3-hide w3-container">
+                      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam nam ut autem expedita cumque hic optio tempora sequi et fugit porro ab, ea ratione cupiditate dicta facilis voluptatum officiis explicabo.</p>
+                      <hr>
+                      <div class="row">
+                            {% for service in service_list %}
+                                {% if service.id == 1 %}                                
+                                    <p class="w3-large w3-text-black">{{ service.title }}</p>
+                                    <p class=" w3-text-black w3-serif">{{ service.description }}</p>
+                                    <p class="w3-small w3-text-black w3-serif">{{ service.service_id  }}, Status: {{ service.status|lower }}, Phase: {{ service.development_phase|lower }}, Payment: {{ service.payment_status|lower }}</p>
+                                    <p class="w3-small w3-text-black w3-serif"><strong>Notification:</strong> {{ service.notification }}</p>
+                                    <hr>
+                                {% else %}
+                                {% endif %}
+                            {% endfor %}
+                      </div>
+                    </div>
                 </div>
             </div>
-        </div>        
-    </div>
-    
-
-    <div class="w3-red w3-section" style="width:75%">
-        <!-- <button onclick="accordion('Demo3')" class="w3-button w3-block">75%</button> -->
-        <div id="Demo3" class="w3-hide w3-container">
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam nam ut autem expedita cumque hic optio tempora sequi et fugit porro ab, ea ratione cupiditate dicta facilis voluptatum officiis explicabo.</p>
         </div>
     </div>
 
@@ -172,7 +182,8 @@
         closebtns[i].addEventListener("click", function() {
             this.parentElement.style.display = 'none';
         });
-        }        
+        }
+        
     </script>
     <script>        
         function accordion(id) {
