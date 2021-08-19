@@ -10,9 +10,6 @@ from .models import Transaction
 from .paytm import generate_checksum, verify_checksum
 from service_access.models import Service
 
-# import other apps views
-#from service_access.views import ServiceUserProfile
-
 # Create your views here.
 @login_required
 def initiate_payment(request):
@@ -65,6 +62,7 @@ def initiate_payment(request):
 
     transaction.checksum = checksum
     transaction.save()
+    # register payment details into system
 
     paytm_params['CHECKSUMHASH'] = checksum
     print('SENT: ', checksum)
@@ -82,15 +80,14 @@ def callback(request):
                 paytm_checksum = value[0]
             else:
                 paytm_params[key] = str(value[0])
-        # Verify checksum
         is_valid_checksum = verify_checksum(paytm_params, settings.PAYTM_SECRET_KEY, str(paytm_checksum))
         if is_valid_checksum:
             donePayment = "['TXN_SUCCESS']"
-            print("Checksum Matched")
+            #print("Checksum Matched")
             received_data['message'] = "Checksum Matched"
             return render(request, 'payment/callback.html', context=received_data)
         else:
-            print("Checksum Mismatched")
+            #print("Checksum Mismatched")
             received_data['message'] = "Checksum Mismatched"
             return render(request, 'payment/callback.html', context=received_data)
         return render(request, 'payment/callback.html', context=received_data)
@@ -108,11 +105,11 @@ def paymentCallback(request):
         received_data = request.POST
         if received_data:
             if str(received_data['STATUS']) == "['TXN_SUCCESS']" and received_data['BANKTXNID']:
-                print("---------- Updating payment status in account ---------------")
+                #print("---------- Updating payment status in account ---------------")
                 # logic to update in account
                 return redirect('payment:payment_info')
             elif str(received_data['STATUS']) == "['TXN_FAILURE']":
-                print("------------- Payment Failed -----------------")
+                #print("------------- Payment Failed -----------------")
                 return redirect('payment:pay')
         else:
             raise ValueError("Payment before enrollment!")

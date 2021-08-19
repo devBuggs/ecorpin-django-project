@@ -21,15 +21,18 @@ def contact_request(request):
         if form.is_valid():
             form.save()
             serverMsg = "Contact Request is received. We'll contact you shortly. "
-            return render(request, 'service_access/contact_request.html', { 'data':serverMsg })
+            #return render(request, 'service_access/contact_request.html', { 'data':serverMsg })
+            return render(request, 'service_access/new_project.html', { 'data':serverMsg })
         else:
             print("--------> SOMETHING WENT WRONG.")
             serverMsg = "Something went wrong! please try again... "
-            return render(request, 'service_access/contact_request.html', { 'data':serverMsg })
+            #return render(request, 'service_access/contact_request.html', { 'data':serverMsg })
+            return render(request, 'service_access/new_project.html', { 'data':serverMsg })
     else:
         form = ContactRequestForm()
         context = { 'form': form, }
-        return render(request, 'service_access/contact_request.html', context)
+        #return render(request, 'service_access/contact_request.html', context)
+        return render(request, 'service_access/new_project.html', context)
 
 @login_required(login_url='service_access:login')
 def service_logout(request):
@@ -84,7 +87,7 @@ class ServiceUserProfile(LoginRequiredMixin, View):
     
     def get(self, request):
         #return reverse('ecorpin:team')
-        print("--------------------------- Service User Profile ---------------------------")
+        #print("--------------------------- Service User Profile ---------------------------")
         info = Endpoint_info.objects.get(end_point="Profile")
         context = {
             'info':info,
@@ -92,6 +95,7 @@ class ServiceUserProfile(LoginRequiredMixin, View):
         return render(request, 'service_access/profile.html', context)
 
     def post(self, request):
+        # logic for service user profile post method
         pass
 
 class ServiceUpdateView():

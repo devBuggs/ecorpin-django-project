@@ -6,14 +6,14 @@ from .models import ContactRequest
 class ContactRequestForm(forms.ModelForm):
     class Meta:
         model = ContactRequest
-        fields = ('contact_name', 'project_title', 'project_idea', 'contact_date', 'contact_mobile', 'contact_email', 'contact_type')
+        fields = ('contact_name', 'contact_mobile', 'contact_email', 'contact_type', 'contact_date', 'project_title', 'project_idea')
         labels = {
-            'project_title': 'Project Title',
-            'project_idea': 'Project Idea',
+            'project_title': 'Title',
+            'project_idea': 'Description',
             'contact_type': 'Contact Medium',
-            'contact_date': 'Date of Contact',
-            'contact_email': 'Contact Email',
-            'contact_mobile': 'Contact Number',
+            'contact_date': 'Contact Date',
+            'contact_email': 'Email',
+            'contact_mobile': 'Phone',
             'contact_name': 'Name'
         }
 

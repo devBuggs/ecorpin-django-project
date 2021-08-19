@@ -19,3 +19,16 @@ class Transaction(models.Model):
         if self.order_id is None and self.made_on and self.id:
             self.order_id = self.made_on.strftime('ECPAY%Y%m%dODR') + str(self.id)
         return super().save(*args, **kwargs)
+
+
+class PaymentDetails(models.Model):
+    user = models.ForeignKey(User, related_name='payment', on_delete=models.CASCADE)
+    transection_id = models.ForeignKey(Transaction, related_name='transections', on_delete=models.CASCADE)
+    txn_id = 'TXN_SUCCESS'
+    message = 'message'
+    CHECKSUMHASHx = ''
+    date_time = ''
+
+    def __str__(self):
+        return self.transection_id.order_id
+        
