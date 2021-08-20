@@ -100,6 +100,14 @@ class ServiceUserProfile(LoginRequiredMixin, View):
 
 class ServiceUpdateView():
     # logic for the service/profile/information update request
+    def get(self, request):
+        # login for service update get method
+        pass
+
+    def post(self, request):
+        # login for service update get method
+        pass
+
     pass
 
 class ServiceSupportView():
