@@ -17,18 +17,18 @@
         <!-- Sidebar/menu -->
         <nav class="w3-sidebar w3-bar-block w3-flat-midnight-blue w3-animate-right w3-top w3-text-light-grey w3-large" style="z-index:3;width:250px;font-weight:bold;display:none;right:0;" id="mySidebar">
             <a href="javascript:void()" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-32">CLOSE</a> 
-            <a href="{% url 'service_access:dashboard' %}" class="w3-bar-item w3-button w3-center w3-padding-16">Dashboard</a> 
-            <a href="{% url 'service_access:profile' %}" class="w3-bar-item w3-button w3-center w3-padding-16">Profile</a>
-            <a href="#" class="w3-bar-item w3-button w3-center w3-padding-16">Support</a> 
-            <a href="#" class="w3-bar-item w3-button w3-center w3-padding-16">Contact</a> 
             {% if request.user.is_authenticated %}
-                <a href={% url 'service_access:logout' %} class="w3-bar-item w3-button w3-center w3-padding-16">Logout</a>
+            <a href={% url 'service_access:dashboard' %} class="w3-bar-item w3-button w3-center w3-padding-16">Dashboard</a> 
+            <a href={% url 'service_access:profile' %} class="w3-bar-item w3-button w3-center w3-padding-16">Profile</a>
+            <a href="{% url 'service_access:contact_request' %}" class="w3-bar-item w3-button w3-center w3-padding-16">Project</a> 
+            <a href="#" class="w3-bar-item w3-button w3-center w3-padding-16">Support</a>
+            <a href={% url 'service_access:logout' %} class="w3-bar-item w3-button w3-center w3-padding-16">Logout</a>
             {% endif %}
         </nav>
 
         <!-- Top menu on small screens -->
         <header class="w3-container w3-top w3-white w3-xlarge w3-padding-16">
-            <a href="{% url 'service_access:dashboard' %}" class="w3-span w3-btn w3-hover-none w3-left w3-padding w3-text-teal">Service Access</a>
+            <a href={% url 'service_access:dashboard' %} class="w3-span w3-btn w3-hover-none w3-left w3-padding w3-text-teal">Service Access</a>
             <a href="javascript:void(0)" class="w3-right w3-button w3-white w3-text-teal" onclick="w3_open()">☰</a>
         </header>
 
@@ -39,6 +39,7 @@
         <div class="w3-main w3-content" style="max-width:1600px;margin-top:83px">
             <div class="w3-row w3-flat-green-sea">
                 <div class="w3-half">
+                    {% if service_list %}
                     <div class="w3-dropdown-hover w3-quarter">
                         <button class="w3-button">Choose Project</button>
                         <div class="w3-dropdown-content w3-bar-block w3-card-4">
@@ -47,6 +48,7 @@
                             {% endfor %}
                         </div>
                     </div>
+                    {% endif %}
                     <p class="w3-padding-small w3-center w3-text-sand w3-large w3-twothird">have a look! We're building your dream...</p>
                 </div>
                 <ol class="w3-ol w3-right w3-border-left">
@@ -63,14 +65,14 @@
             {% endblock %}
         </div>
 
-        <div class="w3-row w3-center w3-text-sand w3-red w3-large">
+        <!-- <div class="w3-row w3-center w3-text-sand w3-red w3-large">
             <div class="w3-third w3-padding-large w3-green">
                 <p class="w3-serif w3-xlarge">Ecorpin Corporation</p>
             </div>
             <div class="w3-twothird w3-padding-large w3-deep- ">
                 <p class="w3-serif w3-xlarge">Ecorpin Corporation</p>
             </div>
-        </div>
+        </div> -->
         
         <script>
             // Script to open and close sidebar

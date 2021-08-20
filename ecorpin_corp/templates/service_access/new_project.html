@@ -1,0 +1,104 @@
+{% extends 'service_access/base.html' %}
+{% block title %}Start project | Ecorpin{% endblock %}
+{% block style %}
+	<style>
+		label{
+			display: none;
+		}
+		input, select, textarea{
+			margin-bottom: 10px;
+			margin-left: 5px;
+			margin-right: 5px;
+			/* width: 50% !important; */
+		}
+		textarea {
+			padding: 12px;
+			border: none;
+			/* margin: 5px 0; */
+			display: inline-block;
+			font-size: 17px;
+			line-height: 20px;
+			text-decoration: none;
+		}
+		#submit_btn{
+			margin-left: 5px;
+			margin-right: 5px;
+		}
+	</style>
+{% endblock %}
+
+{% block content %}
+
+<div>
+	<div class="w3-container w3-flat-midnight-blue w3-padding-64">
+		<div class="w3-third w3-padding-large">
+			<h3 class=""><strong>request a call back.</strong></h3>
+			<p class="w3-medium w3-serif w3-padding-medium">tell us a bit about your project or idea, so we can start a conversation...</p>
+		</div>
+		<div class="w3-twothird ">
+			<h6 class="w3-large w3-serif w3-text-white w3-margin-left">tell us a bit about your project or idea, so we can start a conversation..</h6>
+			<!-- <form class="w3-row w3-padding-small w3-medium w3-bar" method="POST">
+				<div class="w3-half w3-padding-small">
+					<input type="text" class="w3-input w3-serif" name="catogary" id="id_catogary" placeholder="choose"><br>
+					<input type="text" class="w3-input w3-serif" name="phone" id="id_phone" placeholder="Phone number"><br>
+					<input type="text" class="w3-input w3-serif" name="project_title" id="id_title" placeholder="project title">
+				</div>
+				<div class="w3-half w3-padding-small">
+					<input type="text" class="w3-input w3-serif" name="name" id="id_name" placeholder="Name"><br>
+					<input type="email" class="w3-input w3-serif" name="email" id="id_email" placeholder="Email"><br>
+					<input type="text" class="w3-input w3-serif" name="phone" id="id_phone" placeholder="Date & Time">
+				</div>
+
+				<input type="submit" class="w3-button w3-bar-item w3-border w3-margin-top" value="submit" style="margin-left:6px;">
+				<button class="button button3" type="submit">Let's Start Together</button>
+			</form> -->
+			<form action="{% url 'service_access:contact_request' %}" class="w3-row w3-medium w3-bar" method="POST" autocomplete="off">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<button id="submit_btn" class="w3-button w3-third w3-border" type="submit">Let's Start Together</button>
+			</form>
+		</div>
+	</div>
+
+  <script>
+    var ContactName = document.getElementById("id_contact_name");
+    var ContactMobileNumber = document.getElementById("id_contact_mobile");
+    var ContactEmailAddress = document.getElementById("id_contact_email");
+    var ContactType = document.getElementById("id_contact_type");
+    var ContactDateTime = document.getElementById("id_contact_date");
+    var ProjectTitle = document.getElementById("id_project_title");
+    var ContactProjectIdea = document.getElementById("id_project_idea");
+
+    ContactName.setAttribute("placeholder", "your name");
+	ContactName.classList.add("w3-third", "w3-input");
+
+	ContactMobileNumber.classList.add("w3-third", "w3-input");
+    ContactMobileNumber.setAttribute("type", "tel");
+    ContactMobileNumber.setAttribute("pattern", "[0-9]{10}");
+    ContactMobileNumber.setAttribute("placeholder", "e.g. 999999XXXX");
+
+	ContactEmailAddress.setAttribute("placeholder", "your email");
+	ContactEmailAddress.classList.add("w3-third", "w3-input");
+
+    ProjectTitle.setAttribute("placeholder", "project title");
+	ProjectTitle.classList.add("w3-third", "w3-input");
+
+    ContactProjectIdea.setAttribute("placeholder", "Tell us a bit about your project or idea, so we can start a conversation.");
+    ContactProjectIdea.classList.add("w3-input", "w3-twothird");
+
+    ContactDateTime.classList.add("w3-input", "w3-third");
+    ContactDateTime.setAttribute("type", "datetime-local");
+
+    ContactType.classList.add("w3-select", "w3-pale-red", "w3-third");
+
+    // Open and close sidebar
+    function w3_open() {
+      document.getElementById("mySidebar").style.width = "100%";
+      document.getElementById("mySidebar").style.display = "block";
+    }
+    function w3_close() {
+      document.getElementById("mySidebar").style.display = "none";
+    }
+  </script>
+</div>
+{% endblock %}

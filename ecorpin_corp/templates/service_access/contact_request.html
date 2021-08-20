@@ -303,15 +303,10 @@
             </div>
           </div>
           <div class="w3-container w3-third">
-            <form
-              action="{% url 'service_access:contact_request' %}"
-              method="POST"
-              autocomplete="off"
-            >
-              {% csrf_token %} {{ form.as_p }}
-              <button class="button button3" type="submit">
-                Let's Start Together
-              </button>
+            <form action="{% url 'service_access:contact_request' %}" method="POST" autocomplete="off">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <button class="button button3" type="submit">Let's Start Together</button>
             </form>
           </div>
         </div>
