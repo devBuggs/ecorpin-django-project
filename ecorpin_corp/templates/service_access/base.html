@@ -57,22 +57,17 @@
                     <li class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">notification</li>
                     <li class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">support</li>
                     <a href="{% url 'payment:pay' %}" class="w3-btn w3-border-bottom w3-border-white w3-hover-border-black w3-serif">payment</a>
-                    <a href="{% url 'service_access:logout' %}" class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">logout</a>
+                    {% if request.user.is_authenticated %}
+                        <a href="{% url 'service_access:logout' %}" class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">logout</a>
+                    {% else %}
+                        <h1 class="w3-red">Failed Logic</h1>
+                    {% endif %}
                 </ol>
             </div>
             {% block content %}
 
             {% endblock %}
         </div>
-
-        <!-- <div class="w3-row w3-center w3-text-sand w3-red w3-large">
-            <div class="w3-third w3-padding-large w3-green">
-                <p class="w3-serif w3-xlarge">Ecorpin Corporation</p>
-            </div>
-            <div class="w3-twothird w3-padding-large w3-deep- ">
-                <p class="w3-serif w3-xlarge">Ecorpin Corporation</p>
-            </div>
-        </div> -->
         
         <script>
             // Script to open and close sidebar

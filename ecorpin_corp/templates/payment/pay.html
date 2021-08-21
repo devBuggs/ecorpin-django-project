@@ -9,15 +9,16 @@
             font-family:'Courier New', Courier, monospace;
         }
         input, textarea{
-            color: red;
+            color: black;
         }
     </style>
 {% endblock %}
 
 {% block content %}
 <div class="w3-container w3-flat-midnight-blue">
-    <h3 class="w3-text-teal w3-xlarge">Verify information before payment </h3>
-    <div class="w3-half w3-medium w3-flat-wet-asphalt w3-padding w3-round">
+    <br>
+    <div class="w3-half w3-card-4 w3-leftbar w3-border-teal w3-padding-large w3-left">
+        <h3 class="w3-text-teal w3-xlarge">Verify information before payment</h3>
         <table class="w3-table">
             <tr>
                 <td class="td_label">Username</td>
@@ -45,7 +46,9 @@
             </tr>
         </table>
     </div>
-    <div class="w3-third w3-medium w3-flat-wet-asphalt w3-padding w3-margin-left w3-round">
+
+    <div class="w3-third w3-card-4 w3-leftbar w3-border-teal w3-padding-large w3-right">
+        <h3 class="w3-text-teal w3-large">proceed to pay</h3>
         {% if error %}
             <h3>{{ error }}</h3>
             <hr>
@@ -69,7 +72,7 @@
                 <input type="submit" class="w3-btn w3-border w3-right w3-serif w3-round " name="submit" value="proceed to pay" required>
             </form>
     </div>
-    <p class="w3-bottom w3-large w3-serif w3-text-teal w3-center"><b> ©2021 Ecorpin Corporation | Rights reserved.</b></p>
+    <!-- <p class="w3-bottom w3-large w3-serif w3-text-teal w3-center"><b> ©2021 Ecorpin Corporation | Rights reserved.</b></p> -->
 </div>
 
 <!-- display payment checkout form -->

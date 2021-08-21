@@ -34,7 +34,7 @@ def contact_request(request):
         #return render(request, 'service_access/contact_request.html', context)
         return render(request, 'service_access/new_project.html', context)
 
-@login_required(login_url='service_access:login')
+@login_required
 def service_logout(request):
     logout(request)
     return redirect("service_access:login")
