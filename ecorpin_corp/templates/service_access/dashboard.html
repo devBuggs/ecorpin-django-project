@@ -17,36 +17,9 @@
 {% endblock %}
 
 {% block content %}
-    <!-- Project List  -->
-    <div class="w3-section">
-        <div class="w3-bar w3-light-grey">
-            <div class="w3-dropdown-hover">
-                <select id="id_project" class="w3-select w3-bar-item w3-button" name="project">
-                    <option disabled selected>Choose project</option>
-                    {% for service in service_list %}
-                    <option value="{{ service.id }}" onclick="accordionX('Demo3', '{{ service.id }}')" class="w3-button w3-bar-item w3-flat-wet-asphalt">{{ service.title }}</option>
-                    {% endfor %}
-                </select>
-                <div class="w3-red w3-section w3-flat-wet-asphalt" style="width:75%">
-                    <div id="Demo3" class="w3-hide w3-container">
-                      <div class="row">
-                            {% for service in service_list %}
-                                <p class="w3-large w3-text-black">{{ service.title }}</p>
-                                <p class=" w3-text-black w3-serif">{{ service.description }}</p>
-                                <p class="w3-small w3-text-black w3-serif">{{ service.service_id  }}, Status: {{ service.status|lower }}, Phase: {{ service.development_phase|lower }}, Payment: {{ service.payment_status|lower }}</p>
-                                <p class="w3-small w3-text-black w3-serif"><strong>Notification:</strong> {{ service.notification }}</p>
-                                <hr>
-                            {% endfor %}
-                      </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <div class="w3-row w3-flat-wet-asphalt w3-padding-32 w3-padding-64 ">
         {% for service in service_list %}
-            <div class="myListSlide w3-animate-fading w3-animate-left w3-twothird w3-card-4 w3-leftbar w3-border-teal w3-padding-large">
+            <div class="myListSlide w3-animate-left w3-half w3-card-4 w3-leftbar w3-border-teal w3-padding-large">
                 <h1 class="w3-text-teal w3-serif">{{ service.title }}</h1>
                 <h4 class="w3-text-sand">{{ service.description }}</h4>
                 <table class="w3-table w3-bordered  w3-half">
@@ -137,6 +110,7 @@
         <div class="w3-twothird w3-padding-small">
             <h6 class="w3-large w3-serif w3-text-white w3-margin-left">I would like to discuss:</h6>
             <form class="w3-row w3-padding-small w3-medium w3-bar" method="POST">
+                {% csrf_token %}
                 <div class="w3-half w3-padding-small">
                     <input type="text" class="w3-input w3-serif" name="catogary" id="id_catogary" placeholder="choose"><br>
                     <input type="text" class="w3-input w3-serif" name="phone" id="id_phone" placeholder="Phone number">

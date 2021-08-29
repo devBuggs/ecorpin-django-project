@@ -80,6 +80,8 @@ class ServiceDashboard(LoginRequiredMixin, View):
         return render(request, 'service_access/dashboard.html', context)
     def post(self, request):
         #<view logic>
+        data = request.POST
+        print('----------------> ', data)
         return redirect('ecorpin:feedback')
 
 class ServiceUserProfile(LoginRequiredMixin, View):

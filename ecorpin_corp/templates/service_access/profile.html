@@ -14,14 +14,10 @@
 <!-- Endpoint Information -->
 {% if info %}
     {% block title %}{{ info.title }}{% endblock %}
-    
-    {% block end-point %} {{ info.end_point }} {% endblock %}
-    {% block side-nav %} {{ info.sideNav }} {% endblock %}
-    {% block main-headBox %}<h2>{{ info.main_headBox }}</h2>{% endblock %}
-    {% block edge-headBox %}<h3></h3>{% endblock %}
 {% endif %}
 
 {% block content %}
+<!-- body content 2nd row -->
     <div class="w3-row w3-flat-wet-asphalt w3-padding-32">
         <div class="w3-third w3-card-4 w3-leftbar w3-border-teal w3-padding-large w3-right">
             <h3 class="w3-text-teal w3-large">Profile Details! {{ request.user.first_name }} {{ request.user.last_name }}</h3>
@@ -32,7 +28,17 @@
             <h5 class="w3-medium">Last Access: {{ request.user.last_login }}</h5>
         </div>
     </div>
-
+    <!-- body content 2nd row -->
+    <div class="w3-row w3-flat-wet-asphalt w3-padding-32">
+        <div class="w3-third w3-card-4 w3-leftbar w3-border-teal w3-padding-large w3-right w3-bar-block">
+            <h3 class="w3-text-teal w3-large">Ecorpin (registered as Ecorpin Corporation) {{ request.user.first_name }} {{ request.user.last_name }}</h3>
+            <a href="#" class="w3-bar-item w3-btn w3-border w3-border-teal w3-flat-wet-asphalt w3-hover-sand ">Have A New Idea! Let's Talk About It...</a>
+            <a href="#" class="w3-bar-item w3-btn w3-border w3-border-teal w3-flat-wet-asphalt w3-hover-sand">Invest In Ecorpin Corporation <span class="w3-green w3-text-white w3-large w3-serif w3-right w3-animate-fading"> Start Now </span></a>
+            <a href="#" class="w3-bar-item w3-btn w3-border w3-border-teal w3-flat-wet-asphalt w3-hover-sand">Appriciate Our Superheros By Little Donation</a>
+            <a href="#" class="w3-bar-item w3-btn w3-border w3-border-teal w3-flat-wet-asphalt w3-hover-sand">Subscribe Ecorpin Notification</a>
+            <a href="#" class="w3-bar-item w3-btn w3-border w3-border-teal w3-flat-wet-asphalt w3-hover-sand"></a>
+        </div>
+    </div>
     <div class="w3-row w3-center w3-text-sand w3-red w3-large w3-padding-32">{{ info.edge_headBox }}</div>
 
     <script>

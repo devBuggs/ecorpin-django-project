@@ -46,7 +46,6 @@
             </tr>
         </table>
     </div>
-
     <div class="w3-third w3-card-4 w3-leftbar w3-border-teal w3-padding-large w3-right">
         <h3 class="w3-text-teal w3-large">proceed to pay</h3>
         {% if error %}
@@ -72,28 +71,23 @@
                 <input type="submit" class="w3-btn w3-border w3-right w3-serif w3-round " name="submit" value="proceed to pay" required>
             </form>
     </div>
-    <!-- <p class="w3-bottom w3-large w3-serif w3-text-teal w3-center"><b> ©2021 Ecorpin Corporation | Rights reserved.</b></p> -->
 </div>
 
 <!-- display payment checkout form -->
 <script>
     var username = document.getElementById("username");
-    var orderAmount = document.getElementById("orderAmount");
     var orderCurrency = document.getElementById("orderCurrency");
     var orderNote = document.getElementById("orderNote");
     var customerName = document.getElementById("customerName");
     var customerEmail = document.getElementById("customerEmail");
     var customerPhone = document.getElementById("customerPhone");
     username.classList.add("w3-input");
-    //orderAmount.classList.add("w3-input");
     orderCurrency.classList.add("w3-input");
     orderNote.classList.add("w3-input");
     customerName.classList.add("w3-input");
     customerPhone.classList.add("w3-input");
     customerEmail.classList.add("w3-input");
-
     username.disabled = true;
-    //orderAmount.disabled = true;
     orderCurrency.disabled = true;
     orderNote.disabled = false;
     customerName.disabled = true;
