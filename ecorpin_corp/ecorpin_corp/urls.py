@@ -4,10 +4,8 @@ from django.conf.urls.static import static
 from django.conf import settings
 from django.views.generic.base import RedirectView
 
-
 # favicon view of the web server
 favicon_view = RedirectView.as_view(url='/static/favicon.ico', permanent=True)
-
 
 urlpatterns = [
     path('favicon.ico', favicon_view),
@@ -17,5 +15,5 @@ urlpatterns = [
     path('', include('bbit.urls')),
     path('', include('works.urls')),
     path('', include('payment.urls')),
-    
+    path('', include('lab.urls')),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
