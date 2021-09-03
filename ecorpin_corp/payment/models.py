@@ -24,10 +24,24 @@ class Transaction(models.Model):
 class PaymentDetails(models.Model):
     user = models.ForeignKey(User, related_name='payment', on_delete=models.CASCADE)
     transection_id = models.ForeignKey(Transaction, related_name='transections', on_delete=models.CASCADE)
-    txn_id = 'TXN_SUCCESS'
-    message = 'message'
-    CHECKSUMHASHx = ''
-    date_time = ''
+    csrfmiddlewaretoken = models.CharField(max_length=255, blank=False, unique=True, )
+    mid = models.CharField(max_length=55, blank=False)
+    txnid = models.CharField(max_length=255, blank=False)
+    orderid = ''
+    banktxnid = ''
+    txnamount = ''
+    currency = ''
+    status = ''
+    respcode = ''
+    respmsg = ''
+    txndate = ''
+    gatewayname = ''
+    bankname = ''
+    bin_name = ''
+    paymentmode = ''
+    checksum = ''
+    msg = ''
+
 
     def __str__(self):
         return self.transection_id.order_id

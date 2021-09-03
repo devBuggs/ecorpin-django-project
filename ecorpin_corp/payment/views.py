@@ -99,10 +99,10 @@ def callback(request):
 
 @login_required
 def paymentCallback(request):
-    # pass
     if request.method == "POST":
         user = request.user
         received_data = request.POST
+        print("---------------> ", received_data)
         if received_data:
             if str(received_data['STATUS']) == "['TXN_SUCCESS']" and received_data['BANKTXNID']:
                 #print("---------- Updating payment status in account ---------------")

@@ -86,11 +86,13 @@
                 </tr>
                 <tr>
                     <td class="td_label">Payment for</td>
-                    <td><select name="payment_for" id="payment_for" class="w3-select w3-half">
+                    <td>
+                        <select name="payment_for" id="payment_for" class="w3-select w3-half">
                             {% for project in projects %}
                                 <option value="{{ project.id }}">{{ project.title }}</option>
                             {% endfor %}
-                        </select></td>
+                        </select>
+                    </td>
                 </tr>
             </table>
             <input type="submit" class="w3-btn w3-border w3-border-teal" name="submit" value="Update Payment Status" required>
