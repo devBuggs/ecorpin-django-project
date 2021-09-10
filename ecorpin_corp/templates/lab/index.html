@@ -34,4 +34,21 @@
       </div>
     </div>
   </section>
+
+  <section class="text-gray-400 bg-gray-900 body-font w3-row">
+    {% if mail_response %}
+      <p class="text-gray-400 bg-gray-900 text-3xl body-font">{{ mail_response }}</p>
+    {% else %}
+      <form class="container px-5 py-24 mx-auto flex flex-wrap " autocomplete="off" method="POST">
+        {% csrf_token %}
+        Email Address : <input type="email" name="user_email" class="w3-input" placeholder="enter email address" required><br>
+        Subject : <input type="text" name="user_subject" class="w3-input" placeholder="enter subject" required><br>
+        Message : <input type="text" name="user_message" class="w3-input" placeholder="enter message" required><br>
+        <input type="submit" value="Send mail" class="w3-border w3-btn">
+      </form>
+    {% endif %}
+  </section>
+
+  
+  
 {% endblock %}

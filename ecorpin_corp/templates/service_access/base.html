@@ -7,8 +7,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="{% static 'css/w3.css' %}">
         <link rel="stylesheet" href="{% static 'css/flatUIcolor.css' %}">
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
         {% block style %}
             <style>
+                box{display: none;}
+                uibox{color: firebrick;}
             </style>
         {% endblock %}
     </head>
@@ -17,20 +20,21 @@
         <nav class="w3-sidebar w3-bar-block w3-flat-midnight-blue w3-animate-right w3-top w3-text-light-grey w3-large" style="z-index:3;width:250px;font-weight:bold;display:none;right:0;" id="mySidebar">
             <a href="javascript:void()" onclick="w3_close()" class="w3-bar-item w3-button w3-center w3-padding-32">CLOSE</a> 
             {% if request.user.is_authenticated %}
-            <a href={% url 'service_access:dashboard' %} class="w3-bar-item w3-button w3-center w3-padding-16">Dashboard</a> 
-            <a href={% url 'service_access:profile' %} class="w3-bar-item w3-button w3-center w3-padding-16">Profile</a>
+            <a href="{% url 'service_access:dashboard' %}" class="w3-bar-item w3-button w3-center w3-padding-16">Dashboard</a> 
+            <a href="{% url 'service_access:profile' %}" class="w3-bar-item w3-button w3-center w3-padding-16">Profile</a>
             <a href="{% url 'service_access:contact_request' %}" class="w3-bar-item w3-button w3-center w3-padding-16">Project</a> 
             <a href="#" class="w3-bar-item w3-button w3-center w3-padding-16">Support</a>
-            <a href={% url 'service_access:logout' %} class="w3-bar-item w3-button w3-center w3-padding-16">Logout</a>
+            <a href="{% url 'service_access:logout' %}" class="w3-bar-item w3-button w3-center w3-padding-16">Logout</a>
             {% endif %}
         </nav>
         <!-- Top menu on small screens -->
         <header class="w3-container w3-top w3-white w3-xlarge w3-padding-16">
-            <a href={% url 'service_access:dashboard' %} class="w3-span w3-btn w3-hover-none w3-left w3-padding w3-text-teal">Service Access</a>
+            <a href="{% url 'service_access:dashboard' %}" class="w3-span w3-btn w3-hover-none w3-left w3-padding w3-text-teal">Service Access</a>
             <a href="javascript:void(0)" class="w3-right w3-button w3-white w3-text-teal" onclick="w3_open()">☰</a>
         </header>
         <!-- Overlay effect when opening sidebar on small screens -->
         <div class="w3-overlay w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+        
         <!-- !PAGE CONTENT! -->
         <div class="w3-main w3-content" style="max-width:1600px;margin-top:83px">
             <div class="w3-row w3-flat-green-sea">
@@ -38,37 +42,24 @@
                     <!-- Project List  -->
                     {% if service_list %}
                             <div class="w3-dropdown-hover w3-quarter w3-flat-green-sea">
-                                <select id="id_project" class="w3-select w3-border w3-border-black w3-teal w3-bar-item w3-button" name="project">
+                                <select class="w3-select w3-border w3-border-black w3-teal w3-bar-item w3-button" id="select_project">
                                     <option disabled selected>Select project</option>
                                     {% for service in service_list %}
-                                    <option value="{{ service.id }}" onclick="accordionX('Demo3', '{{ service.id }}')" class="w3-button w3-bar-item w3-flat-wet-asphalt">{{ service.title }}</option>
+                                        <option id="{{ service.id }}" value="{{ service.id }} uibox" class="w3-button w3-bar-item w3-flat-wet-asphalt">{{ service.title }}</option>
                                     {% endfor %}
                                 </select>
-                                <div class="w3-red w3-section w3-flat-wet-asphalt" style="width:75%">
-                                    <div id="Demo3" class="w3-hide w3-container">
-                                        <div class="row">
-                                                {% for service in service_list %}
-                                                    <p class="w3-large w3-text-black">{{ service.title }}</p>
-                                                    <p class=" w3-text-black w3-serif">{{ service.description }}</p>
-                                                    <p class="w3-small w3-text-black w3-serif">{{ service.service_id  }}, Status: {{ service.status|lower }}, Phase: {{ service.development_phase|lower }}, Payment: {{ service.payment_status|lower }}</p>
-                                                    <p class="w3-small w3-text-black w3-serif"><strong>Notification:</strong> {{ service.notification }}</p>
-                                                    <hr>
-                                                {% endfor %}
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                     {% endif %}
                     <p class="w3-padding-small w3-center w3-text-sand w3-large w3-twothird">have a look! We're building your dream...</p>
                 </div>
                 <ol class="w3-ol w3-right w3-border-left">
+                    {% if request.user.is_authenticated %}
                     <a href="{% url 'service_access:dashboard' %}" class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">dashboard</a>
                     <a href="{% url 'service_access:profile' %}" class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">profile</a>
                     <li class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">notification</li>
                     <li class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">support</li>
                     <a href="{% url 'payment:pay' %}" class="w3-btn w3-border-bottom w3-border-white w3-hover-border-black w3-serif">payment</a>
-                    {% if request.user.is_authenticated %}
-                        <a href="{% url 'service_access:logout' %}" class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">logout</a>
+                    <a href="{% url 'service_access:logout' %}" class="w3-btn w3-border-bottom	w3-border-white w3-hover-border-black w3-serif">logout</a>
                     {% else %}
                         <h1 class="w3-red">Failed Logic</h1>
                     {% endif %}
@@ -89,6 +80,20 @@
               document.getElementById("mySidebar").style.display = "none";
               document.getElementById("myOverlay").style.display = "none";
             }
+            // jQuery for dropdown
+            $(document).ready(function(){
+                $("select").change(function(){
+                    $(this).find("option:selected").each(function(){
+                        var optionValue = $(this).attr("value");
+                        if(optionValue){
+                            $(".box").not("." + optionValue).hide();
+                            $("." + optionValue).show();
+                        } else{
+                            $(".box").hide();
+                        }
+                    });
+                }).change();
+            });
         </script>
     </body>
 </html>

@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  {% load static %}
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}{% endblock %}</title>
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/w3.css' %}">
 </head>
 <body>
     <header class="text-gray-400 bg-gray-900 body-font">
         <div class="container mx-auto flex flex-wrap py-10 flex-col md:flex-row items-center">
-          <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
+          <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0" href="{% url 'lab:index' %}">
             <span class="ml-3 text-4xl font-serif">Ecorpin Lab.</span>
           </a>
           <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-            <a class="mr-5 hover:text-white">Home</a>
-            <a class="mr-5 hover:text-white">Careers</a>
+            <a class="mr-5 hover:text-white" href="{% url 'lab:index' %}">Home</a>
+            <a class="mr-5 hover:text-white" href="{% url 'ecorpin:careers' %}">Careers</a>
             <a class="mr-5 hover:text-white">Contact Us</a>
           </nav>
         </div>
@@ -92,7 +94,7 @@
     </section>
     <footer class="text-gray-400 bg-gray-900 body-font">
         <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
-          <a class="flex title-font font-medium items-center md:justify-start justify-center text-white">
+          <a class="flex title-font font-medium items-center md:justify-start justify-center text-white" href="{% url 'lab:index' %}">
             <span class="ml-3 text-xl">Ecorpin Lab.</span>
           </a>
           <p class="text-sm text-gray-400 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-800 sm:py-2 sm:mt-0 mt-4">Copyright © 2021 Ecorpin. All rights reserved.

@@ -7,11 +7,17 @@
         body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
         .w3-quarter img{margin-bottom: -6px; cursor: pointer}
         .w3-quarter img:hover{opacity: 0.6; transition: 0.3s}
-        .myListSlide {display:none;}
+        /* .myListSlide {display:none;} */
         option{
             font-family: 'Courier New', Courier, monospace;
             font-size: large;
             padding: 10px;
+        }
+        box{
+            display: none;
+        }
+        uibox{
+            color: firebrick;
         }
     </style>
 {% endblock %}
@@ -19,7 +25,7 @@
 {% block content %}
     <div class="w3-row w3-flat-wet-asphalt w3-padding-32 w3-padding-64 ">
         {% for service in service_list %}
-            <div class="myListSlide w3-animate-left w3-half w3-card-4 w3-leftbar w3-border-teal w3-padding-large">
+            <div id="{{ service.id }}" class="myListSlide w3-half w3-card-4 w3-rightbar w3-border-teal w3-padding-large box uibox">
                 <h1 class="w3-text-teal w3-serif">{{ service.title }}</h1>
                 <h4 class="w3-text-sand">{{ service.description }}</h4>
                 <table class="w3-table w3-bordered  w3-half">
@@ -79,7 +85,7 @@
                     </tr>
                     <tr>
                         <td>Live URL</td>
-                        <td><a class="w3-button w3-bar-item " href="{{ service.live_url }}" target="_blank">Visit Now</a></td>
+                        <td><a class="w3-button w3-bar-item w3-border" id ="dashboard-button" href="{{ service.live_url }}" target="_blank">Visit Now</a></td>
                     </tr>
                 </table>
             </div>
@@ -101,8 +107,10 @@
         </div>
     </div>
 
-    <!-- request a call section -->
     <div class="w3-container w3-flat-midnight-blue w3-padding-64">
+        {% if mail_response %}
+            <div class="w3-row w3-center w3-xxlarge w3-serif">{{ mail_response }}</div>
+        {% else %}
         <div class="w3-third w3-padding-large">
             <h3 class=""><strong>request a call back.</strong></h3>
             <p class="w3-medium w3-serif w3-padding-medium">Would you like to speak one of our technical consultants over the phone? Just submit your details and we'll be in touch shortly.</p>
@@ -112,36 +120,36 @@
             <form class="w3-row w3-padding-small w3-medium w3-bar" method="POST">
                 {% csrf_token %}
                 <div class="w3-half w3-padding-small">
-                    <input type="text" class="w3-input w3-serif" name="catogary" id="id_catogary" placeholder="choose"><br>
+                    <input type="text" class="w3-input w3-serif " name="catogary" id="id_catogary" placeholder="choose"><br>
                     <input type="text" class="w3-input w3-serif" name="phone" id="id_phone" placeholder="Phone number">
                 </div>
                 <div class="w3-half w3-padding-small">
                     <input type="text" class="w3-input w3-serif" name="name" id="id_name" placeholder="Name"><br>
-                    <input type="email" class="w3-input w3-serif" name="email" id="id_email" placeholder="Email">
+                    <input type="text" class="w3-input w3-serif" name="message" id="id_message" placeholder="Message">
                 </div>
                 <input type="submit" class="w3-button w3-bar-item w3-border w3-margin-top" value="submit" style="margin-left:6px;">
             </form>
         </div>
+        {% endif %}
     </div>
 
     <div class="w3-row w3-center w3-text-sand w3-red w3-large w3-padding-32">{{ info.edge_headBox }}</div>
 
     <script>
         var slideIndex = 0;
-        carousel();
+        // carousel();
 
-        function carousel() {
-            var i;
-            var x = document.getElementsByClassName("myListSlide");
-            for (i = 0; i < x.length; i++) {
-                x[i].style.display = "none"; 
-            }
-            slideIndex++;
-            if (slideIndex > x.length) {slideIndex = 1} 
-            x[slideIndex-1].style.display = "block"; 
-            setTimeout(carousel, 5000); 
-        }
-
+        // function carousel() {
+        //     var i;
+        //     var x = document.getElementsByClassName("myListSlide");
+        //     for (i = 0; i < x.length; i++) {
+        //         x[i].style.display = "none"; 
+        //     }
+        //     slideIndex++;
+        //     if (slideIndex > x.length) {slideIndex = 1} 
+        //     x[slideIndex-1].style.display = "block"; 
+        //     setTimeout(carousel, 5000); 
+        // }
         // close element
         var closebtns = document.getElementsByClassName("close");
         var i;
@@ -150,23 +158,5 @@
             this.parentElement.style.display = 'none';
         });
         }
-        
-        function accordion(id) {
-          var x = document.getElementById(id);
-          if (x.className.indexOf("w3-show") == -1) {
-            x.className += " w3-show";
-          } else { 
-            x.className = x.className.replace(" w3-show", "");
-          }
-        }
-
-        function accordionX(id, val) {
-            var x = document.getElementById(id);
-          if (x.className.indexOf("w3-show") == -1) {
-            x.className += " w3-show";
-          } else { 
-            x.className = x.className.replace(" w3-show", "");
-          }
-        }
     </script>
-{% endblock %}
+ {% endblock %}
